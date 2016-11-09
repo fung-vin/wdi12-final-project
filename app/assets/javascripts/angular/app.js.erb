@@ -6,21 +6,27 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
   $stateProvider
 
   .state({
-    name: 'home',
+    name: 'header',
+    abstract:true,
+    templateUrl: "<%= asset_path('header/index.html') %>",
+    controller: 'HeaderCtrl'
+  })
+  .state({
+    name: 'header.home',
     url: '/',
     templateUrl: "<%= asset_path('static_pages/index.html') %>",
     controller: 'StaticPagesCtrl'
   })
 
   .state({
-    name: "signup",
+    name: "header.signup",
     url: "/signup",
     templateUrl: "<%= asset_path('auth/signup.html') %>",
     controller: 'SignUpCtrl'
   })
 
   .state({
-    name: "login",
+    name: "header.login",
     url: "/login",
     templateUrl: "<%= asset_path('auth/login.html') %>",
     controller: 'LoginCtrl'
