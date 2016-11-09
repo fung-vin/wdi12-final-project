@@ -1,5 +1,28 @@
-app.controller('HeaderCtrl', ['$scope', function($scope){
+app.controller('HeaderCtrl', ['$scope', "$auth", "$location", function($scope, $auth, $location){
 
   $scope.message = "Welcome to Your Header";
+
+  $scope.login = function () {
+    $auth.submitLogin($scope.loginForm).
+     then(function(resp) {
+       // handle success response
+       console.log(resp);
+
+       // redirect back to root when registration succesfull
+       $location.path('/home');
+     }).
+     catch(function(resp) {
+       // handle error response
+       console.log(resp);
+     });
+  };
+
+  $scope.logout = function () {
+    $auth.signOut().then(function(resp) {
+      console.log(resp);
+    }).catch(function(resp) {
+      console.log(resp);
+    });
+  };
 
 }]);

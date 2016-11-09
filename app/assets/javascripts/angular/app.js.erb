@@ -12,10 +12,10 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
     controller: 'HeaderCtrl'
   })
   .state({
-    name: 'header.home',
+    name: 'header.index',
     url: '/',
-    templateUrl: "<%= asset_path('static_pages/index.html') %>",
-    controller: 'StaticPagesCtrl'
+    templateUrl: "<%= asset_path('main/index.html') %>",
+    controller: 'IndexCtrl'
   })
 
   .state({
@@ -26,10 +26,10 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
   })
 
   .state({
-    name: "header.login",
-    url: "/login",
-    templateUrl: "<%= asset_path('auth/login.html') %>",
-    controller: 'LoginCtrl'
+    name: "header.home",
+    url: "/home",
+    templateUrl: "<%= asset_path('main/home.html') %>",
+    controller: 'HomeCtrl'
   });
 
   $authProvider.configure({
