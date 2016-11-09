@@ -7,7 +7,9 @@
     "angular": "^1.5.8",
     "angular-route": "^1.5.8",
     "angular-ui-router": "^0.3.2",
-    "ng-token-auth": "^0.0.29"
+    "ng-token-auth": "^0.0.29",
+    "bootstrap": "boostrap#^3.3.7",
+    "angular-bootstrap": "^2.2.0"
   },
   "resolutions": {
     "angular": "^1.5.8"
