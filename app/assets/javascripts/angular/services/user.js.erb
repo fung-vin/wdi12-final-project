@@ -1,0 +1,15 @@
+app.service('UserService', ['$auth', function($auth){
+
+  var that = this;
+
+  this.user = {
+    loggedIn: false
+  };
+
+  this.validateUser = function () {
+    $auth.validateUser().then(function(){
+      that.user.loggedin = true;
+    });
+  };
+
+}]);

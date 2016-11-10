@@ -2,4 +2,14 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", function($scope, $au
 
   $scope.message = "Welcome to the Home Landing Page";
 
+  $scope.handleBtnClick = function() {
+    $auth.authenticate('twitter')
+      .then(function(resp) {
+        console.log(resp);
+      })
+      .catch(function(resp) {
+        console.log(resp);
+      });
+  };
+
 }]);

@@ -47,7 +47,7 @@
                   </form>
                 </div>
                 <div class="bottom text-center">
-                  New here ? <a ui-sref="header.signup"><b>Join Us</b></a>
+                  New here? <a ui-sref="header.signup"><b>Join Us</b></a>
                 </div>
               </div>
             </li>
@@ -56,21 +56,21 @@
 
         <!-- Profile Menu Here -->
 
-        <li class="dropdown">
+        <li class="dropdown" ng-show="isLoggedIn">
           <a class="dropdown-toggle" data-toggle="dropdown"><b>Profile</b> <span class="caret"></span></a>
           <ul id="profile-dp" class="dropdown-menu">
             <li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>View Profile</a></li>
+            <li><a><span class="glyphicon glyphicon-user"></span>View Profile</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-search"></span>Find Module</a></li>
+            <li><a><span class="glyphicon glyphicon-search"></span>Find Module</a></li>
             <li role="separator" class="divider"></li>
             <li><a ng-click="logout()"><span class="glyphicon glyphicon-off"></span>Log Out</a></li>
           </ul>
         </li>
 
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 
 
