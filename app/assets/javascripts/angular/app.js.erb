@@ -6,29 +6,38 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
   $stateProvider
 
   .state({
-    name: 'home',
+    name: 'header',
+    abstract:true,
+    templateUrl: "<%= asset_path('header/index.html') %>",
+    controller: 'HeaderCtrl'
+  })
+  .state({
+    name: 'header.index',
     url: '/',
-    templateUrl: "<%= asset_path('static_pages/index.html') %>",
-    controller: 'StaticPagesCtrl'
+    templateUrl: "<%= asset_path('main/index.html') %>",
+    controller: 'IndexCtrl'
   })
 
   .state({
-    name: "signup",
+    name: "header.signup",
     url: "/signup",
     templateUrl: "<%= asset_path('auth/signup.html') %>",
     controller: 'SignUpCtrl'
   })
 
   .state({
-    name: "login",
-    url: "/login",
-    templateUrl: "<%= asset_path('auth/login.html') %>",
-    controller: 'LoginCtrl'
+    name: "header.home",
+    url: "/home",
+    templateUrl: "<%= asset_path('main/home.html') %>",
+    controller: 'HomeCtrl'
   });
 
   $authProvider.configure({
     // By default, you only need to configure apiUrl
     // Note that if you put a '/' at the end of the link, there will be errors when calling the api
-    apiUrl: 'http://localhost:3000'
+    apiUrl: 'http://localhost:3000',
+    authProviderPaths: {
+      twitter: '/auth/twitter'
+    }
   });
 }]);
