@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', "$auth", "$location", function($scope, $auth, $location){
+app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', function($scope, $auth, $location, $http){
 
   $scope.message = "Welcome to the Home Landing Page";
 
@@ -10,6 +10,29 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", function($scope, $au
       .catch(function(resp) {
         console.log(resp);
       });
+  };
+
+  $scope.test = function () {
+    $http({
+      url: '/api/tweets',
+      method: 'get'
+    }).then(function(resp){
+      console.log(resp);
+    })
+  }
+
+  $scope.logout = function () {
+    $auth.signOut().then(function(resp) {
+      // handle success response
+      console.log(resp);
+      // hide log in menu and show profile menu
+      $scope.isLoggedIn = false;
+      // redirect back to root when logout is succesfull
+      $location.path('/');
+    }).catch(function(resp) {
+      // handle error response
+      console.log(resp);
+    });
   };
 
 }]);
