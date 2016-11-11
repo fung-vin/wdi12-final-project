@@ -45,7 +45,7 @@ class API::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksContr
 
     cookies[auth_hash['provider']] ||= {}
     cookies[auth_hash['provider']] = {
-      value: auth_hash['credentials'].to_json,
+      value: JWT.encode(auth_hash['credentials'], ENV['JWT_SECRET'] ,'HS256'),
       httponly: true
     }
 
