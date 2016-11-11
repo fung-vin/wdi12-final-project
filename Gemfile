@@ -37,7 +37,11 @@ gem 'bower'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-instagram'
+gem "omniauth-google-oauth2"
 
+gem 'twitter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
