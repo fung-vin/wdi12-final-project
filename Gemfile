@@ -37,6 +37,9 @@ gem 'bower'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-instagram'
+gem "omniauth-google-oauth2"
 
 gem 'twitter'
 

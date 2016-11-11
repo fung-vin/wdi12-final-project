@@ -3,9 +3,9 @@ Rails.application.routes.draw do
     omniauth_callbacks:  'api/omniauth_callbacks'
   }
 
-  root 'static_pages#index'
-
   namespace :api do
     resources :tweets, only: [:index, :create]
   end
+
+  root 'static_pages#index'
 end

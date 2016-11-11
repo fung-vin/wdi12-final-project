@@ -2,14 +2,36 @@
   <div class="row">
     <h1> {{ message }} </h1>
 
-  <a href="https://api.twitter.com/oauth/authenticate">Sign in to Twitter Here</a>
+  <div class="row">
+    <button ng-click="authenticate('twitter')">
+      Sign into Twitter
+    </button>
 
-  <button ng-click="authenticate('twitter')">
-    Sign into Twitter
-  </button>
+    <a href="http://localhost:3000/api/tweets">Get Tweets</a>
 
-  <a href="http://localhost:3000/api/tweets">Get Tweets</a>
+    <button ng-click="test()">test</button>
+    <button ng-click="logout()">logout</button>
+  </div>
 
-  <button ng-click="test()">test</button>
-  <button ng-click="logout()">logout</button>
+  <div class="row">
+    <button ng-click="authenticate('facebook')">
+      Sign into Facebook
+    </button>
+
+  </div>
+
+  <div class="row">
+    <button ng-click="authenticate('instagram')">
+      Sign into Instagram
+    </button>
+
+  </div>
+
+  <div class="row">
+    <button ng-click="authenticate('google')">
+      Sign into Google
+    </button>
+
+  </div>
+
 </div>
