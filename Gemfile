@@ -34,6 +34,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'bower'
 
+# DEVISE AND OMNIAUTH FILES
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -41,7 +42,11 @@ gem 'omniauth-facebook'
 gem 'omniauth-instagram'
 gem "omniauth-google-oauth2"
 
+# SOCIAL MEDA GEMS
 gem 'twitter'
+
+# SECURITY GEM - JWT
+gem 'jwt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
