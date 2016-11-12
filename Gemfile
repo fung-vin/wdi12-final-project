@@ -40,10 +40,15 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-instagram'
+gem 'omniauth-pinterest'
 gem "omniauth-google-oauth2"
 
 # SOCIAL MEDA GEMS
 gem 'twitter'
+gem "koala"
+gem "instagram"
+gem 'gmail'
+gem 'pinterest-api'
 
 # SECURITY GEM - JWT
 gem 'jwt'

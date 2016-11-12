@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :tweets, only: [:index, :create]
+    resources :facebooks, only: [:index, :create]
+    resources :instagrams, only: [:index, :create]
+    resources :gmails, only: [:index]
+    resources :pinterests, only: [:index]
   end
 
   root 'static_pages#index'
