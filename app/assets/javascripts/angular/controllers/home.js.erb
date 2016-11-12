@@ -5,7 +5,16 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', function($s
   $scope.test = function () {
     $http({
       url: '/api/tweets',
-      method: 'get'
+      method: 'GET'
+    }).then(function(resp){
+      console.log(resp);
+    })
+  };
+
+  $scope.test2 = function () {
+    $http({
+      url: '/api/tweets',
+      method: 'POST'
     }).then(function(resp){
       console.log(resp);
     })
