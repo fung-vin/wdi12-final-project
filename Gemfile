@@ -31,7 +31,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'rack-cors', :require => 'rack/cors'
-
 gem 'bower'
 
 # DEVISE AND OMNIAUTH FILES
@@ -52,7 +51,7 @@ gem 'pinterest-api'
 gem 'jwt'
 
 # MISC
-
+gem 'http'
 gem 'open-weather'
 gem 'rest-client'
 

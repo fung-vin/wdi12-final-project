@@ -304,6 +304,7 @@ DEPENDENCIES
   devise_token_auth
   dotenv-rails
   factory_girl_rails
+  http
   instagram
   jbuilder (~> 2.0)
   jquery-rails

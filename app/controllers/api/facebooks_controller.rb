@@ -5,6 +5,7 @@ class API::FacebooksController < ApplicationController
 
   def index
     render json: @graph.get_connections("me", "feed")
+    # render json: @graph.get_object("10154449047015081_10153900102390081")
   end
 
   def create
