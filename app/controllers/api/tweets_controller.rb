@@ -1,14 +1,22 @@
 class API::TweetsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :get_user, only: [:index, :create]
+  before_action :get_user, only: [:index, :show, :create]
   before_action :msg_params, only: [:create]
 
   def index
-    render json: @client.home_timeline
+    render json: @client.search("#McGregor -rt", result_type: "trending")
+  end
+
+  def show
+    render json: @client.search
   end
 
   def create
     render json: {uri: @client.update(msg_params[:tweet]).uri.to_s}
+  end
+
+  def method_name
+
   end
 
 private

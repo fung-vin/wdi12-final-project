@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   }
 
   namespace :api do
-    resources :tweets, only: [:index, :create]
+    resources :tweets, only: [:index, :show, :create]
     resources :facebooks, only: [:index, :create]
     resources :instagrams, only: [:index, :create]
     resources :gmails, only: [:index]
     resources :pinterests, only: [:index]
+    resources :weathers, only: [:index]
   end
 
   root 'static_pages#index'

@@ -4,22 +4,22 @@ class API::FacebooksController < ApplicationController
   before_action :msg_params, only: [:create]
 
   def index
-    render json: @graph.get_connections("me", "photos")
+    render json: @graph.get_connections("me", "feed")
   end
 
   def create
-    render json: @graph.put_wall_post(msg_params[:facebook_post])
+    @graph.put_connections("me", "feed", message: msg_params[:fb_msg])
+
+    head 201
   end
 
 private
   def get_user
-    decode = JWT.decode cookies[:facebook], ENV['JWT_SECRET'], true, {algorithm: 'HS256'}
-    oauth_access_token = decode[0]["token"]
-
-    @graph =  Koala::Facebook::API.new (oauth_access_token)
+    auth = JWT.decode cookies[:facebook], ENV['JWT_SECRET'], true, {algorithm: 'HS256'}
+    @graph = Koala::Facebook::API.new(auth[0]["token"])
   end
 
   def msg_params
-    params.require(:message).permit(:facebook_post)
+    params.require(:message).permit(:fb_msg)
   end
 end

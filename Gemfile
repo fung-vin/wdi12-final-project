@@ -41,17 +41,20 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-instagram'
 gem 'omniauth-pinterest'
-gem "omniauth-google-oauth2"
 
 # SOCIAL MEDA GEMS
 gem 'twitter'
-gem "koala"
+gem 'koala'
 gem "instagram"
-gem 'gmail'
 gem 'pinterest-api'
 
 # SECURITY GEM - JWT
 gem 'jwt'
+
+# MISC
+
+gem 'open-weather'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
