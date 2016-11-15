@@ -4,7 +4,7 @@ class API::TweetsController < ApplicationController
   before_action :msg_params, only: [:create]
 
   def index
-    render json: @client.search("#McGregor -rt", result_type: "trending")
+    render json: @client.home_timeline
   end
 
   def show

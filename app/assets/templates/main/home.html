@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <h1> {{ message }} </h1>
+  </div>
 
   <div class="row">
     <button ng-click="authenticate('twitter')">
@@ -9,8 +10,8 @@
 
     <a href="http://localhost:3000/api/tweets">Get Tweets</a>
 
-    <button ng-click="test()">test</button>
-    <button ng-click="test2()">test2</button>
+    <button ng-click="getTweets()">test</button>
+    <button ng-click="getInfo()">OG TEST</button>
     <button ng-click="logout()">logout</button>
   </div>
 
@@ -39,6 +40,34 @@
     <button ng-click="authenticate('pinterest')">
       Sign into Pinterest
     </button>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-3 col-xs-12 module" id="twitter">
+      <div class="module-data">
+        <div ng-repeat="tweet in tweets">
+          <div class="row">
+            <div class="col-md-2">
+              <img src="{{tweet.user.profile_image_url}}" alt="">
+            </div>
+            <div class="col-md-10">
+              <h5>@{{tweet.user.name}}</h5>
+              <p>{{tweet.text}}</p>
+            </div>
+            <div>
+              <div>
+                <img src="{{tweet.og.img}}" alt="">
+              </div>
+              <div>
+                <h5>{{tweet.og.title}}</h5>
+                <p>{{tweet.og.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 

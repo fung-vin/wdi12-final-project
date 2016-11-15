@@ -1,24 +1,22 @@
-app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', function($scope, $auth, $location, $http){
+app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'SocialService', function($scope, $auth, $location, $http, SocialService){
 
   $scope.message = "Welcome to the Home Landing Page";
+  $scope.tweets = [];
+  $scope.tweetData = [];
 
-  $scope.test = function () {
-    $http({
-      url: '/api/tweets',
-      method: 'GET'
-    }).then(function(resp){
-      console.log(resp);
-    })
+  $scope.getTweets = function () {
+    SocialService.resource.query(function(resp) {
+      $scope.tweets = resp;
+      for (var i = 0; i < $scope.tweets.length; i++) {
+        SocialService.addInfo($scope.tweets[i]);
+      }
+      console.log($scope.tweets);
+    });
   };
 
-  $scope.test2 = function () {
-    $http({
-      url: '/api/tweets',
-      method: 'POST'
-    }).then(function(resp){
-      console.log(resp);
-    })
-  }
+  $scope.getInfo = function () {
+    console.log($scope.tweets);
+  };
 
   $scope.logout = function () {
     $auth.signOut().then(function(resp) {

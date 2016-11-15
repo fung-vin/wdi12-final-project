@@ -1,0 +1,38 @@
+app.service('SocialService', ['$resource', '$http', function($resource, $http) {
+
+  this.resource = $resource("http://localhost:3000/api/tweets/:id", {
+      "update": {method: "PATCH"},
+    });
+
+  this.addInfo = function(tweet) {
+
+    var arr = tweet.text.split(" ");
+    var link = "";
+    var req = "";
+
+    for (var i = 0; i < arr.length; i++) {
+      if(/^(f|ht)tps?:\/\//i.test(arr[i])) {
+        link = arr[i].slice(13);
+      } else if (/^(f|ht)tp?:\/\//i.test(arr[i])) {
+        link = arr[i].slice(11);
+      }
+    };
+
+    req =  "http://api.embed.ly/1/extract?url=https%3A%2F%2Ft.co%2F"+ link + "&maxwidth=500&key=609c92436a484cb99f9bcfe626ad19f4"
+    // debugger
+    $http({
+        method: "GET",
+        url: req
+      }).then(function(ogresp){
+        console.log(ogresp);
+        tweet.og = {
+          title: ogresp.data.title,
+          description: ogresp.data.description,
+          img: ogresp.data.images[0].url,
+          url: ogresp.data.url
+        };
+      });
+
+  };
+
+}]);
