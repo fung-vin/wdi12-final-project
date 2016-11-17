@@ -9,12 +9,22 @@ body{
     padding-right: 12px;
 }
 
-
 // MODULES
 
+.module-holder{
+    display: inline-block;
+    border-bottom: 1px solid #eeefef;
+    padding: 0px 2px;
+}
 .module-data {
     height: 600px;
+    padding-right: 10px;
+    padding-right: 10px;
     overflow-y: scroll;
+}
+.module-ctrl li {
+    display: inline;
+    float: left;
 }
 
 // LOGIN BAR
@@ -72,22 +82,8 @@ body{
 
 // MODULE TWITTER
 
-// MODULE TWITTER - TWEET BLOCK
-
-#twitter .row {
-    border: 2px solid black;
-}
-#twitter .row .col-md-2 {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-#twitter .row .col-md-2 img {
-    margin-top: 10px;
-    border-radius: 5px;
-}
-#twitter .tweet-title {
-    display: block;
-    list-style-type: none;
+.tweet-cont {
+    border-bottom: 1px solid #eeefef;
 }
 .tweet-title li {
     display: inline;
@@ -96,22 +92,92 @@ body{
 .tweet-title {
     padding-left: 5px;
 }
+.tweet-cont .row .col-md-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tweet-cont .row .col-md-2 img {
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.tweet-cont .tweet-title {
+    display: block;
+    list-style-type: none;
+}
 .tweet-content p {
     display: inline-block;
 }
 
 // MODULE TWITTER - OG BLOCK
-.tweet-clicks {
-    border-radius: 25px;
-    border: 2px solid black;
+.ogt-clicks {
+    border-radius: 10px;
+    border: 1px solid #eeefef;
     min-width: 350px;
+    padding: 0 0;
+    margin-bottom: 7px;
 }
-.tweet-clicks a img{
-    display: block;
-    margin: 0 auto;
+.ogt-clicks:hover {
+    opacity: 0.7;
+}
+.ogt-img {
     width: 100%;
-    height: 100%;
+    border-radius: 10px 10px 0px 0px;
 }
-.t-og-pic {
-    max-width: 350px;
+.ogt-title {
+    border-bottom: 1px solid #eeefef;
+    margin: 0px 10px;
+    padding: 10px 0px;
+}
+.ogt-desc {
+    margin: 0px 10px;
+    padding: 10px 0px;
+}
+
+// INSTAGRAM MODULE
+
+.insta-cont {
+    border: 1px solid #eeefef;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.insta-cont:hover {
+    opacity: 0.7;
+}
+.inst-img {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+.inst-title {
+    border-bottom: 1px solid #eeefef;
+    margin: 0px 10px;
+    padding: 10px 0px;
+}
+.inst-cap {
+    margin: 0px 10px;
+    padding: 10px 0px;
+}
+
+// NEWS MODULE
+
+.news-cont {
+    border: 1px solid #eeefef;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.news-cont:hover {
+    opacity: 0.7;
+}
+.news-img {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+.news-title {
+    border-bottom: 1px solid #eeefef;
+    margin: 0px 10px;
+    padding: 10px 0px;
+}
+.news-desc {
+    margin: 0px 10px;
+    padding: 10px 0px;
 }
