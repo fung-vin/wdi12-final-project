@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :nytimes, only: [:index]
     resources :dailymails, only: [:index]
     resources :bbcsports, only: [:index]
+    post '/save_preferences' => "users#save_preference"
+    get '/get_preferences' => "users#get_preference"
   end
 
   root 'static_pages#index'

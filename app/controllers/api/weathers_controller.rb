@@ -2,7 +2,7 @@ class API::WeathersController < ApplicationController
   before_action :get_api, only: [:index]
 
   def index
-    render json: JSON.parse(HTTP.get("http://api.openweathermap.org/data/2.5/forecast/city?id=1819729&APPID=" + @key).body)
+    render json: JSON.parse(HTTP.get("http://api.openweathermap.org/data/2.5/forecast/city?id=1819729&APPID=" + @key).body)["list"]
   end
 
 private

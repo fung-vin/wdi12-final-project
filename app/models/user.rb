@@ -5,6 +5,4 @@ class User < ActiveRecord::Base
           :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :web_modules, through: :user_module
-
 end

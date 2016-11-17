@@ -1,23 +1,47 @@
 app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleService', function($scope, $auth, $location, $http, ModuleService){
 
   $scope.message = "Welcome to the Home Landing Page";
-  $scope.module = ["bbcsports", "dailymails"];
+  $scope.preference = ["dailymails"];
   $scope.tweets = [];
   $scope.instagrams = [];
+  $scope.facebooks = [];
   $scope.bbcsports = [];
   $scope.dailymails = [];
   $scope.nytimes = [];
+  $scope.weathers = [];
+  // $scope.user = $auth.user;
 
   $scope.addToArray = function (elem) {
-    $scope.module.push(elem);
+    $scope.preference.push(elem);
     $scope.getData();
-  }
+  };
 
   // CURRENTLY IF ELEM IS NOT THERE IT WILL RETURN -1 WHICH WILL REMOVE THE MOST RECENT ONE
   $scope.removeFromArray = function (elem) {
-    var id = $scope.module.indexOf(elem);
-    $scope.module.splice(id, 1);
-  }
+    var id = $scope.preference.indexOf(elem);
+    $scope.preference.splice(id, 1);
+  };
+
+  $scope.savePreferences = function () {
+    $http({
+      url: 'http://localhost:3000/api/save_preferences',
+      method: 'POST',
+      data: {
+        preferences: $scope.preference
+      }
+    }).then(function(resp){
+      console.log(resp);
+    });
+  };
+
+  $scope.getPreferences = function () {
+    $http({
+      url: 'http://localhost:3000/api/get_preferences',
+      method: 'GET'
+    }).then(function(resp){
+      $scope.preference = resp;
+    });
+  };
 
   // FUNCTION ADDED BECAUSE OF THE ASYNCHRONOUS NATURE OF JS, THIS ENSURES THAT THE MODULE VARIABLE IN GETNEWS FUNCTION IS THE CORRECT ONE AS IT PASSES IT AS AN INSTANCE TO EXTRACTDATA FUNCTION
   var extractData = function(module) {
@@ -25,22 +49,49 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
       $scope[module] = resp;
       if (module === "tweets") {
         for (var i = 0; i < $scope.tweets.length; i++) {
-        ModuleService.addInfoTweets($scope.tweets[i]);
+          ModuleService.addInfoTweets($scope.tweets[i]);
         };
       };
     });
   };
 
+  // TO BE PASTED BACK INTO THE CODE ABOVE IF ENOUGHT TIME FOR WEATHERS
+   // else if (module === "weathers") {
+   //      for (var i = 0; i < $scope.weathers.length; i++) {
+   //        var date = ;
+   //        var datePlus = ;
+   //        var newWeather = [];
+   //        if ($scope.weathers[i].dt_text == date || $scope.weathers[i].dt_text  == datePlus) {
+   //          newWeather.push($scope.weathers[i]);
+   //        };
+   //        $scope.weathers = newWeather;
+   //      };
+   //    };
+
+  //THIS FUNCTION GETS THE WEATHER AND FINDS WHICH ONE IN THE ARRAY IS THE CLOSET TO THE CURRENT TIME AND RETURNS ITS INDEX NUMBER
+  // Scope.getIndexWeather = function() {
+  //   var d       = new Date();
+  //   var timeNow = g.getTime();
+
+  //   var index      = null;
+  //   var difference = null;
+
+  //   for (var i = 0; i < $scope.weather.length; i++) {
+  //     var tmpDiff = Math.abs(weather[i].dt - timeNow);
+  //     if (difference === null || tmpDiff < difference) {
+  //       difference = tmpDiff;
+  //       index = i;
+  //     };
+  //     return index;
+  //   };
+  // };
+
   $scope.getData = function() {
-    for (var i = 0; i < $scope.module.length; i++) {
-      var module = $scope.module[i];
+    for (var i = 0; i < $scope.preference.length; i++) {
+      var module = $scope.preference[i];
       extractData(module);
     };
   };
-
-  $scope.saveProfile = function() {
-
-  }
 
   $scope.logout = function () {
     $auth.signOut().then(function(resp) {

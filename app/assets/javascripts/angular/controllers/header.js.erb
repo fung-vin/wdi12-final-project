@@ -26,7 +26,7 @@ app.controller('HeaderCtrl', ['$scope', "$auth", "$location", function($scope, $
       // hide log in menu and show profile menu
       $scope.isLoggedIn = false;
       // redirect back to root when logout is succesfull
-      $location.path('/');
+      $location.path('/home');
     }).catch(function(resp) {
       // handle error response
       console.log(resp);

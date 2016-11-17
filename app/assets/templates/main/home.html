@@ -16,6 +16,8 @@
     <button ng-click="addToArray('nytimes')">Add NY Times</button>
     <button ng-click="removeFromArray('nytimes')">Remove NY Times</button>
     <button ng-click="logout()">logout</button>
+    <button ng-click="savePreferences()">Save Preferences</button>
+    <button ng-click="getPreferences()">Get Preferences</button>
   </div>
 
   <div class="row">
@@ -55,7 +57,7 @@
 
     <!-- MODULE FOR TWITTER -->
 
-    <div class="col-md-3 col-xs-12 module" id="twitter" ng-show="module.indexOf('tweets') != -1">
+    <div class="col-md-3 col-xs-12 module module-data" id="twitter" ng-show="preference.indexOf('tweets') != -1">
       <div ng-repeat="tweet in tweets">
         <div class="row">
           <div class="col-md-2 col-xs-2">
@@ -84,72 +86,64 @@
 
     <!-- MODULE FOR INSTAGRAMS -->
 
-    <div class="col-md-3 col-xs-12 module" id="instagrams" ng-show="module.indexOf('instagrams') != -1">
-      <div class="module-data">
-        <div ng-repeat="pic in instagrams">
-          <div>
-            <a href="{{pic.link}}" target="_blank">
-              <div>
-                <img src="{{pic.images.standard_resolution.url}}">
-              </div>
-              <h5>{{pic.location.name}}</h5>
-              <p>{{pic.caption.text}}</p>
-            </a>
-          </div>
+    <div class="col-md-3 col-xs-12 module module-data" id="instagrams" ng-show="preference.indexOf('instagrams') != -1">
+      <div ng-repeat="pic in instagrams">
+        <div>
+          <a href="{{pic.link}}" target="_blank">
+            <div>
+              <img src="{{pic.images.standard_resolution.url}}">
+            </div>
+            <h5>{{pic.location.name}}</h5>
+            <p>{{pic.caption.text}}</p>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- MODULE FOR BBCSPORTS -->
 
-    <div class="col-md-3 col-xs-12 module" id="bbcsports" ng-show="module.indexOf('bbcsports') != -1">
-      <div class="module-data">
-        <div ng-repeat="article in bbcsports">
-          <div>
-            <a href="{{article.url}}" target="_blank">
-              <div>
-                <img src="{{article.urlToImage}}">
-              </div>
-              <h5>{{article.title}}</h5>
-              <p>{{article.description}}</p>
-            </a>
-          </div>
+    <div class="col-md-3 col-xs-12 module module-data" id="bbcsports" ng-show="preference.indexOf('bbcsports') != -1">
+      <div ng-repeat="article in bbcsports">
+        <div>
+          <a href="{{article.url}}" target="_blank">
+            <div>
+              <img src="{{article.urlToImage}}">
+            </div>
+            <h5>{{article.title}}</h5>
+            <p>{{article.description}}</p>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- MODULE FOR DAILYMAIL -->
 
-    <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="module.indexOf('dailymails') != -1">
-      <div class="module-data">
-        <div ng-repeat="article in dailymails">
-          <div>
-            <a href="{{article.url}}" target="_blank">
-              <div>
-                <img src="{{article.urlToImage}}">
-              </div>
-              <h5>{{article.title}}</h5>
-              <p>{{article.description}}</p>
-            </a>
-          </div>
+    <div class="col-md-3 col-xs-12 module module-data" id="dailymails" ng-show="preference.indexOf('dailymails') != -1">
+      <div ng-repeat="article in dailymails">
+        <div>
+          <a href="{{article.url}}" target="_blank">
+            <div>
+              <img src="{{article.urlToImage}}">
+            </div>
+            <h5>{{article.title}}</h5>
+            <p>{{article.description}}</p>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- MODULE FOR NY TIMES -->
 
-    <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="module.indexOf('nytimes') != -1">
-      <div class="module-data">
-        <div ng-repeat="article in nytimes">
-          <div>
-            <a href="{{article.url}}" target="_blank">
-              <div>
-                <img src="{{article.multimedia[3].url}}">
-              </div>
-              <h5>{{article.title}}</h5>
-              <p>{{article.abstract}}</p>
-            </a>
-          </div>
+    <div class="col-md-3 col-xs-12 module module-data" id="dailymails" ng-show="preference.indexOf('nytimes') != -1">
+      <div ng-repeat="article in nytimes">
+        <div>
+          <a href="{{article.url}}" target="_blank">
+            <div>
+              <img src="{{article.multimedia[3].url}}">
+            </div>
+            <h5>{{article.title}}</h5>
+            <p>{{article.abstract}}</p>
+          </a>
         </div>
       </div>
     </div>
