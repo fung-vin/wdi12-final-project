@@ -30,6 +30,11 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
     url: "/home",
     templateUrl: "<%= asset_path('main/home.html') %>",
     controller: 'HomeCtrl'
+    // lve: {
+    //       auth: function($auth) {
+    //         return $auth.validateUser();
+    //       }
+    //     }
   });
 
   $authProvider.configure({

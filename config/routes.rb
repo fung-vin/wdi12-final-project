@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
 
   namespace :api do
+    resources :users, only: [:index]
     resources :tweets, only: [:index, :show, :create]
     resources :facebooks, only: [:index, :create]
     resources :instagrams, only: [:index, :create]

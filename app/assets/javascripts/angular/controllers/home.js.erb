@@ -1,22 +1,46 @@
-app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'SocialService', function($scope, $auth, $location, $http, SocialService){
+app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleService', function($scope, $auth, $location, $http, ModuleService){
 
   $scope.message = "Welcome to the Home Landing Page";
+  $scope.module = ["bbcsports", "dailymails"];
   $scope.tweets = [];
-  $scope.tweetData = [];
+  $scope.instagrams = [];
+  $scope.bbcsports = [];
+  $scope.dailymails = [];
+  $scope.nytimes = [];
 
-  $scope.getTweets = function () {
-    SocialService.resource.query(function(resp) {
-      $scope.tweets = resp;
-      for (var i = 0; i < $scope.tweets.length; i++) {
-        SocialService.addInfo($scope.tweets[i]);
-      }
-      console.log($scope.tweets);
+  $scope.addToArray = function (elem) {
+    $scope.module.push(elem);
+    $scope.getData();
+  }
+
+  // CURRENTLY IF ELEM IS NOT THERE IT WILL RETURN -1 WHICH WILL REMOVE THE MOST RECENT ONE
+  $scope.removeFromArray = function (elem) {
+    var id = $scope.module.indexOf(elem);
+    $scope.module.splice(id, 1);
+  }
+
+  // FUNCTION ADDED BECAUSE OF THE ASYNCHRONOUS NATURE OF JS, THIS ENSURES THAT THE MODULE VARIABLE IN GETNEWS FUNCTION IS THE CORRECT ONE AS IT PASSES IT AS AN INSTANCE TO EXTRACTDATA FUNCTION
+  var extractData = function(module) {
+    ModuleService.resource(module).query(function(resp) {
+      $scope[module] = resp;
+      if (module === "tweets") {
+        for (var i = 0; i < $scope.tweets.length; i++) {
+        ModuleService.addInfoTweets($scope.tweets[i]);
+        };
+      };
     });
   };
 
-  $scope.getInfo = function () {
-    console.log($scope.tweets);
+  $scope.getData = function() {
+    for (var i = 0; i < $scope.module.length; i++) {
+      var module = $scope.module[i];
+      extractData(module);
+    };
   };
+
+  $scope.saveProfile = function() {
+
+  }
 
   $scope.logout = function () {
     $auth.signOut().then(function(resp) {

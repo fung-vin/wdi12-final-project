@@ -1,0 +1,36 @@
+app.service('ModuleService', ['$resource', '$http', function($resource, $http) {
+
+  this.resource = function(key){
+    return $resource("http://localhost:3000/api/" + key + "/:id", {}, {
+      "update": {method: "PATCH"}
+    });
+  };
+
+  this.addInfoTweets = function(tweet) {
+
+    var arr = tweet.text.split(" ");
+    var link = "";
+    var req = "";
+
+    for (var i = 0; i < arr.length; i++) {
+      if(/^(f|ht)tps?:\/\//i.test(arr[i]) || /^(f|ht)tp?:\/\//i.test(arr[i])) {
+        link = encodeURIComponent(arr[i]);
+      };
+    };
+
+    req =  "http://api.embed.ly/1/extract?url="+ link + "&maxwidth=500&key=609c92436a484cb99f9bcfe626ad19f4"
+
+    $http({
+        method: "GET",
+        url: req
+      }).then(function(ogResp){
+        tweet.og = {
+          title:       ogResp.data.title,
+          description: ogResp.data.description,
+          img:         ogResp.data.images[0].url,
+          url:         ogResp.data.url
+        };
+      });
+  };
+
+}]);

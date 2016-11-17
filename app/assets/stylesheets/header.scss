@@ -1,5 +1,5 @@
 body{
-  background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
+  // background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
   padding: 15px;
 }
 
@@ -50,7 +50,6 @@ body{
     background-color:rgba(255,255,255,.8);
     padding-bottom: 15px;
 }
-
 #profile-dp .help-block{
     font-size:12px
 }
@@ -62,4 +61,50 @@ body{
 }
 #profile-dp .form-group {
     margin-bottom: 10px;
+}
+
+// MODULE TWITTER
+
+// MODULE TWITTER - TWEET BLOCK
+
+#twitter .row {
+    border: 2px solid black;
+}
+#twitter .row .col-md-2 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#twitter .row .col-md-2 img {
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#twitter .tweet-title {
+    display: block;
+    list-style-type: none;
+}
+.tweet-title li {
+    display: inline;
+    float: left;
+}
+.tweet-title {
+    padding-left: 5px;
+}
+.tweet-content p {
+    display: inline-block;
+}
+
+// MODULE TWITTER - OG BLOCK
+.tweet-clicks {
+    border-radius: 25px;
+    border: 2px solid black;
+    min-width: 350px;
+}
+.tweet-clicks a img{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+.t-og-pic {
+    max-width: 350px;
 }

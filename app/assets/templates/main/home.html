@@ -10,8 +10,11 @@
 
     <a href="http://localhost:3000/api/tweets">Get Tweets</a>
 
-    <button ng-click="getTweets()">test</button>
-    <button ng-click="getInfo()">OG TEST</button>
+    <button ng-click="getData()">test</button>
+    <button ng-click="addToArray('tweets')">Add Twitter</button>
+    <button ng-click="addToArray('instagrams')">Add Instagrams</button>
+    <button ng-click="addToArray('nytimes')">Add NY Times</button>
+    <button ng-click="removeFromArray('nytimes')">Remove NY Times</button>
     <button ng-click="logout()">logout</button>
   </div>
 
@@ -40,35 +43,116 @@
     <button ng-click="authenticate('pinterest')">
       Sign into Pinterest
     </button>
+
+  <button ng-click="getNews()">BBC Sports</button>
+  <button ng-click="testing()">Array Test</button>
+
   </div>
+
+  <!-- HOLDER FOR ALL MODULES -->
 
   <div class="row">
 
-    <div class="col-md-3 col-xs-12 module" id="twitter">
-      <div class="module-data">
-        <div ng-repeat="tweet in tweets">
-          <div class="row">
-            <div class="col-md-2">
-              <img src="{{tweet.user.profile_image_url}}" alt="">
+    <!-- MODULE FOR TWITTER -->
+
+    <div class="col-md-3 col-xs-12 module" id="twitter" ng-show="module.indexOf('tweets') != -1">
+      <div ng-repeat="tweet in tweets">
+        <div class="row">
+          <div class="col-md-2 col-xs-2">
+            <img src="{{tweet.user.profile_image_url}}">
+          </div>
+          <div class="col-md-10 col-xs-10">
+            <ul class="tweet-title">
+              <li><h5><a href="https://twitter.com/{{tweet.user.screen_name}}">@{{tweet.user.screen_name}}</a>  </h5></li>
+              <li></li>
+              <li><h5>{{tweet.user.name}}</h5></li>
+            </ul>
+            <div class="tweet-content">
+              <p><a href='https://twitter.com/{{tweet.user.name}}/status/{{tweet.id_str}}'>{{tweet.text}}</a></p>
             </div>
-            <div class="col-md-10">
-              <h5>@{{tweet.user.name}}</h5>
-              <p>{{tweet.text}}</p>
-            </div>
-            <div>
-              <div>
-                <img src="{{tweet.og.img}}" alt="">
-              </div>
-              <div>
+            <div class="col-md-12 col-xs-12 tweet-clicks">
+              <a href="{{tweet.og.url}}" target="_blank">
+                <img src="{{tweet.og.img}}" alt="" class="t-og-pic">
                 <h5>{{tweet.og.title}}</h5>
                 <p>{{tweet.og.description}}</p>
-              </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  </div>
+    <!-- MODULE FOR INSTAGRAMS -->
 
+    <div class="col-md-3 col-xs-12 module" id="instagrams" ng-show="module.indexOf('instagrams') != -1">
+      <div class="module-data">
+        <div ng-repeat="pic in instagrams">
+          <div>
+            <a href="{{pic.link}}" target="_blank">
+              <div>
+                <img src="{{pic.images.standard_resolution.url}}">
+              </div>
+              <h5>{{pic.location.name}}</h5>
+              <p>{{pic.caption.text}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE FOR BBCSPORTS -->
+
+    <div class="col-md-3 col-xs-12 module" id="bbcsports" ng-show="module.indexOf('bbcsports') != -1">
+      <div class="module-data">
+        <div ng-repeat="article in bbcsports">
+          <div>
+            <a href="{{article.url}}" target="_blank">
+              <div>
+                <img src="{{article.urlToImage}}">
+              </div>
+              <h5>{{article.title}}</h5>
+              <p>{{article.description}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE FOR DAILYMAIL -->
+
+    <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="module.indexOf('dailymails') != -1">
+      <div class="module-data">
+        <div ng-repeat="article in dailymails">
+          <div>
+            <a href="{{article.url}}" target="_blank">
+              <div>
+                <img src="{{article.urlToImage}}">
+              </div>
+              <h5>{{article.title}}</h5>
+              <p>{{article.description}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE FOR NY TIMES -->
+
+    <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="module.indexOf('nytimes') != -1">
+      <div class="module-data">
+        <div ng-repeat="article in nytimes">
+          <div>
+            <a href="{{article.url}}" target="_blank">
+              <div>
+                <img src="{{article.multimedia[3].url}}">
+              </div>
+              <h5>{{article.title}}</h5>
+              <p>{{article.abstract}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

@@ -2,7 +2,7 @@ class API::DailymailsController < ApplicationController
   before_action :get_api, only: [:index]
 
   def index
-    render json: JSON.parse(HTTP.get("https://newsapi.org/v1/articles?source=daily-mail&sortBy=top&apiKey=" + @key).body)
+    render json: JSON.parse(HTTP.get("https://newsapi.org/v1/articles?source=daily-mail&sortBy=top&apiKey=" + @key).body)["articles"]
   end
 
 private
