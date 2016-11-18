@@ -1,7 +1,29 @@
 body{
-  // background:url('http://www.wallpaperup.com/uploads/wallpapers/2012/10/21/20181/cad2441dd3252cf53f12154412286ba0.jpg');
-  padding: 15px;
+    // background-image: url(https://drscdn.500px.org/photo/65060215/m%3D2048/fc1e72b3893ab6769746d37c2ec61aa9);
+    padding: 15px;
 }
+
+// INDEX PAGE CASCADING STYLE SHEET
+
+// SIGNUP FORM
+
+#signup-form {
+    background: rgba(0, 0, 0, 0.3);
+    color: #FFF !important;
+    padding: 20px 25px 10px 25px;
+}
+.form-control {
+    background-color: rgba(0, 0, 0, 0);
+}
+legend {
+    color: #FFF !important;
+}
+.control-label {
+    font-weight: normal;
+}
+
+
+// HOME PAGE CASCADING STYLE SHEET
 
 // GENERAL
 
@@ -15,6 +37,7 @@ body{
     display: inline-block;
     border-bottom: 1px solid #eeefef;
     padding: 0px 2px;
+    height: 85px;
 }
 .module-data {
     height: 600px;
@@ -25,6 +48,14 @@ body{
 .module-ctrl li {
     display: inline;
     float: left;
+}
+.social-pic img {
+    border-radius: 50%;
+    height: 75px;
+    padding-top: 7px;
+}
+.social-title h3 {
+    border-bottom: 1px solid black;
 }
 
 // LOGIN BAR

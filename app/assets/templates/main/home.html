@@ -18,6 +18,7 @@
     <button ng-click="logout()">logout</button>
     <button ng-click="savePreferences()">Save Preferences</button>
     <button ng-click="getPreferences()">Get Preferences</button>
+    <button ng-click="testingPro()">Get PRofile</button>
   </div>
 
   <div class="row">
@@ -57,20 +58,25 @@
 
     <!-- MODULE FOR TWITTER -->
 
-    <div class="col-md-3 col-xs-12 module id="twitter" ng-show="preference.indexOf('tweets') != -1">
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <h2>Twitter</h2>
-            </li>
-          </ul>
-          <ul class="navbar-right">
-            <li><span class="glyphicon glyphicon-plus" ng-click="authenticate('twitter')"></span></li>
-            <li><span class="glyphicon glyphicon-minus"></span></li>
-            <li><span class="glyphicon glyphicon-remove"></span></li>
-          </ul>
-        </nav>
+    <div class="col-md-3 col-xs-12 module" id="twitter" ng-show="preference.indexOf('tweets') != -1">
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-3 social-pic">
+            <img src="{{tweets_profile.profile_image_url}}">
+          </div>
+          <div class="col-md-6" class="social-title">
+            <h3>Twitter</h3>
+            <h5>{{tweets_profile.name}}</h5>
+          </div>
+          <div class="col-md-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-plus" ng-click="authenticate('instagram')"></span></li>
+              <li><span class="glyphicon glyphicon-refresh"></span></li>
+              <li><span class="glyphicon glyphicon-minus"></span></li>
+              <li><span class="glyphicon glyphicon-remove"></span></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class=" module-data"">
         <div ng-repeat="tweet in tweets" class="tweet-cont">
@@ -106,18 +112,23 @@
 
     <div class="col-md-3 col-xs-12 module" id="instagrams" ng-show="preference.indexOf('instagrams') != -1">
       <div class="module-holder">
-        <nav>
-          <ul class="module-ctrl">
-            <li>
-              <h2>Instagram</h2>
-            </li>
-          </ul>
-          <ul class="navbar-right module-ctrl">
-            <li><span class="glyphicon glyphicon-plus" ng-click="authenticate('instagram')"></span></li>
-            <li><span class="glyphicon glyphicon-minus"></span></li>
-            <li><span class="glyphicon glyphicon-remove"></span></li>
-          </ul>
-        </nav>
+        <div class="row">
+          <div class="col-md-3 social-pic">
+            <img src="{{instagrams_profile.profile_picture}}" ng-show="instagrams_profile!={}">
+          </div>
+          <div class="col-md-6" class="social-title">
+            <h3>Instagram</h3>
+            <h5>{{instagrams_profile.full_name}}</h5>
+          </div>
+          <div class="col-md-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-plus" ng-click="authenticate('instagram')"></span></li>
+              <li><span class="glyphicon glyphicon-refresh"></span></li>
+              <li><span class="glyphicon glyphicon-minus"></span></li>
+              <li><span class="glyphicon glyphicon-remove"></span></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class=" module-data"">
         <div ng-repeat="pic in instagrams" class="insta-cont">
@@ -127,8 +138,8 @@
                 <img src="{{pic.images.standard_resolution.url}}" class="inst-img">
               </a>
             </div>
-            <h4 class="inst-title">{{pic.location.name}}</h4>
-            <p class="inst-cap">{{pic.caption.text}}</p>
+            <p class="inst-title">{{pic.caption.text}}</p>
+            <h5 class="inst-cap">Location: {{pic.location.name}}</h5>
           </div>
         </div>
       </div>
@@ -137,12 +148,19 @@
     <!-- MODULE FOR BBCSPORTS -->
 
     <div class="col-md-3 col-xs-12 module" id="bbcsports" ng-show="preference.indexOf('bbcsports') != -1">
-      <div>
-        <nav>
-          <h2>BBC Sports</h2>
-        </nav>
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-12" id="nytimes-title">
+          </div>
+          <div class="col-md-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-refresh"></span></li>
+              <li><span class="glyphicon glyphicon-remove"></span></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class=" module-data"">
+      <div class="module-data">
         <div ng-repeat="article in bbcsports" class="news-cont">
           <div>
             <div>
@@ -160,12 +178,19 @@
     <!-- MODULE FOR DAILYMAIL -->
 
     <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="preference.indexOf('dailymails') != -1">
-      <div>
-        <nav>
-          <h2>Daily Mail</h2>
-        </nav>
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-12" id="nytimes-title">
+          </div>
+          <div class="col-md-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-refresh"></span></li>
+              <li><span class="glyphicon glyphicon-remove"></span></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class=" module-data"">
+      <div class="module-data"  infinite-scroll="addMoreItems()" infinite-scroll-distance="4">
         <div ng-repeat="article in dailymails" class="news-cont">
           <div>
             <div>
@@ -183,12 +208,19 @@
     <!-- MODULE FOR NY TIMES -->
 
     <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="preference.indexOf('nytimes') != -1">
-       <div>
-        <nav>
-          <h2>New York Times</h2>
-        </nav>
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-12" id="nytimes-title">
+          </div>
+          <div class="col-md-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-refresh"></span></li>
+              <li><span class="glyphicon glyphicon-remove"></span></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class=" module-data"">
+      <div class="module-data">
         <div ng-repeat="article in nytimes" class="news-cont">
           <div>
             <div>

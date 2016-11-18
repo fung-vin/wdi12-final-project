@@ -1,4 +1,4 @@
-var app = angular.module('wdi12-final-project', ['ui.router', 'ng-token-auth', 'ui.bootstrap', 'ngResource']);
+var app = angular.module('wdi12-final-project', ['ui.router', 'ng-token-auth', 'ui.bootstrap', 'ngResource', 'infinite-scroll']);
 
 app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($stateProvider, $urlRouterProvider, $authProvider) {
   $urlRouterProvider.otherwise("/");
@@ -12,7 +12,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
     controller: 'HeaderCtrl'
   })
   .state({
-    name: 'header.index',
+    name: 'index',
     url: '/',
     templateUrl: "<%= asset_path('main/index.html') %>",
     controller: 'IndexCtrl'

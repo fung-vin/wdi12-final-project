@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :bbcsports, only: [:index]
     post '/save_preferences' => "users#save_preference"
     get '/get_preferences' => "users#get_preference"
+    get 'instagrams_self' => "instagrams#get_self"
+    get 'tweets_self' => "tweets#get_self"
   end
 
   root 'static_pages#index'

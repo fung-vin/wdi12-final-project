@@ -20,5 +20,6 @@
 //= require angular-cookie/angular-cookie
 //= require bootstrap/dist/js/bootstrap
 //= require angular-bootstrap/ui-bootstrap-tpls
+//= require ngInfiniteScroll/build/ng-infinite-scroll
 
 //= require_tree .

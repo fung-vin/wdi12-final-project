@@ -1,7 +1,7 @@
 app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleService', function($scope, $auth, $location, $http, ModuleService){
 
   $scope.message = "Welcome to the Home Landing Page";
-  $scope.preference = ["dailymails", "instagrams"];
+  $scope.preference = ["instagrams"];
   $scope.tweets = [];
   $scope.instagrams = [];
   $scope.facebooks = [];
@@ -9,6 +9,9 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
   $scope.dailymails = [];
   $scope.nytimes = [];
   $scope.weathers = [];
+
+  $scope.tweets_profile = {};
+  $scope.instagrams_profile = {};
   // $scope.user = $auth.user;
 
   $scope.addToArray = function (elem) {
@@ -20,6 +23,15 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
   $scope.removeFromArray = function (elem) {
     var id = $scope.preference.indexOf(elem);
     $scope.preference.splice(id, 1);
+  };
+
+  var getProfile = function(key) {
+    $http({
+      url: 'http://localhost:3000/api/' + key + '_self',
+      method: 'GET'
+    }).then(function(resp){
+      $scope[key + '_profile'] = resp.data;
+    });
   };
 
   $scope.savePreferences = function () {
@@ -90,8 +102,17 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
     for (var i = 0; i < $scope.preference.length; i++) {
       var module = $scope.preference[i];
       extractData(module);
+      getProfile(module);
     };
   };
+
+  $scope.deleteCookie = function (name) {
+
+  }
+
+  $scope.testingPro = function() {
+    console.log($scope.tweets_profile);
+  }
 
   $scope.logout = function () {
     $auth.signOut().then(function(resp) {

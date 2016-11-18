@@ -1,10 +1,14 @@
 class API::InstagramsController < ApplicationController
 
-  before_action :get_user, only: [:index]
+  before_action :get_user, only: [:index, :get_self]
 
   def index
     render json: @client.user_recent_media
     # render json: @client.user
+  end
+
+  def get_self
+    render json: @client.user
   end
 
 private
