@@ -1,7 +1,7 @@
 app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleService', function($scope, $auth, $location, $http, ModuleService){
 
   $scope.message = "Welcome to the Home Landing Page";
-  $scope.preference = ["instagrams"];
+  $scope.preference = ["instagrams", "bbcsports", "dailymails"];
   $scope.tweets = [];
   $scope.instagrams = [];
   $scope.facebooks = [];
@@ -67,6 +67,14 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
     });
   };
 
+  $scope.getData = function() {
+    for (var i = 0; i < $scope.preference.length; i++) {
+      var module = $scope.preference[i];
+      extractData(module);
+      getProfile(module);
+    };
+  };
+
   // TO BE PASTED BACK INTO THE CODE ABOVE IF ENOUGHT TIME FOR WEATHERS
    // else if (module === "weathers") {
    //      for (var i = 0; i < $scope.weathers.length; i++) {
@@ -97,14 +105,6 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
   //     return index;
   //   };
   // };
-
-  $scope.getData = function() {
-    for (var i = 0; i < $scope.preference.length; i++) {
-      var module = $scope.preference[i];
-      extractData(module);
-      getProfile(module);
-    };
-  };
 
   $scope.deleteCookie = function (name) {
 

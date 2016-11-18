@@ -128,7 +128,10 @@ legend {
     padding-right: 10px;
 }
 .tweet-cont .row .col-md-2 img {
+    height: 55px;
+    width: 55px;
     margin-top: 10px;
+    margin-left: 10px;
     border-radius: 5px;
 }
 .tweet-cont .tweet-title {
@@ -160,8 +163,10 @@ legend {
     padding: 10px 0px;
 }
 .ogt-desc {
-    margin: 0px 10px;
+    margin: 0px 10px 10px 10px;
     padding: 10px 0px;
+    height: 50px;
+    overflow: hidden;
 }
 
 // INSTAGRAM MODULE
@@ -190,18 +195,38 @@ legend {
 
 // NEWS MODULE
 
+#nytimes-title {
+    height: 80px;
+}
+#nytimes-title img {
+    height: 100%;
+    width: 100%;
+}
+#dailymails-title {
+    height: 80px;
+}
+#dailymails-title img {
+    height: 100%;
+    width: 100%;
+}
+#bbcsports-title {
+    height: 80px;
+}
+#bbcsports-title img {
+    height: 100%;
+    width: 100%;
+}
 .news-cont {
     border: 1px solid #eeefef;
     margin-bottom: 10px;
     border-radius: 10px;
 }
-
-.news-cont:hover {
-    opacity: 0.7;
-}
 .news-img {
     width: 100%;
     border-radius: 10px 10px 0px 0px;
+}
+.news-img:hover {
+    opacity: 0.7;
 }
 .news-title {
     border-bottom: 1px solid #eeefef;
@@ -212,3 +237,4 @@ legend {
     margin: 0px 10px;
     padding: 10px 0px;
 }
+

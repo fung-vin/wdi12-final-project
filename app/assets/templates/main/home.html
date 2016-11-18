@@ -50,7 +50,14 @@
   <button ng-click="getNews()">BBC Sports</button>
   <button ng-click="testing()">Array Test</button>
 
+    <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+  </button>
+
   </div>
+
+
 
   <!-- HOLDER FOR ALL MODULES -->
 
@@ -66,7 +73,7 @@
           </div>
           <div class="col-md-6" class="social-title">
             <h3>Twitter</h3>
-            <h5>{{tweets_profile.name}}</h5>
+            <h5>@{{tweets_profile.screen_name}} | {{tweets_profile.name}}</h5>
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
@@ -87,7 +94,7 @@
             <div class="col-md-10 col-xs-10">
               <ul class="tweet-title">
                 <li><h5><a href="https://twitter.com/{{tweet.user.screen_name}}">@{{tweet.user.screen_name}}</a>  </h5></li>
-                <li></li>
+                <li>&nbsp;</li>
                 <li><h5>{{tweet.user.name}}</h5></li>
               </ul>
               <div class="tweet-content">
@@ -150,7 +157,8 @@
     <div class="col-md-3 col-xs-12 module" id="bbcsports" ng-show="preference.indexOf('bbcsports') != -1">
       <div class="module-holder">
         <div class="row">
-          <div class="col-md-12" id="nytimes-title">
+          <div class="col-md-9" id="bbcsports-title">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/BBC_Sport.svg/800px-BBC_Sport.svg.png">
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
@@ -180,7 +188,8 @@
     <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="preference.indexOf('dailymails') != -1">
       <div class="module-holder">
         <div class="row">
-          <div class="col-md-12" id="nytimes-title">
+          <div class="col-md-9" id="dailymails-title">
+            <img src="http://www.findersinternational.co.uk/wp-content/uploads/2015/12/daily-mail-logo.png">
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
@@ -207,10 +216,11 @@
 
     <!-- MODULE FOR NY TIMES -->
 
-    <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="preference.indexOf('nytimes') != -1">
+    <div class="col-md-3 col-xs-12 module" id="nytimes" ng-show="preference.indexOf('nytimes') != -1">
       <div class="module-holder">
         <div class="row">
-          <div class="col-md-12" id="nytimes-title">
+          <div class="col-md-9" id="nytimes-title">
+            <img src="http://blog.bleacherreport.com/wp-content/uploads/2011/10/New-York-Times-Logo.jpg">
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
@@ -235,5 +245,24 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
 </div>
