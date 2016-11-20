@@ -79,16 +79,14 @@
           <div class="col-md-3 social-pic">
             <img src="{{tweets_profile.profile_image_url}}">
           </div>
-          <div class="col-md-6" class="social-title">
+          <div class="col-md-5" class="social-title">
             <h3>Twitter</h3>
             <h5>@{{tweets_profile.screen_name}} | {{tweets_profile.name}}</h5>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <ul class="navbar-right module-ctrl">
               <li><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#tweetingModal"></span></li>
               <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('tweets')"></span></li>
-            </ul>
-            <ul class="navbar-right module-ctrl">
               <li><span class="glyphicon glyphicon-play" ng-click="authenticate('twitter')"></span></li>
               <li><span class="glyphicon glyphicon-stop"></span></li>
               <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('tweets')"></span></li>
@@ -134,18 +132,24 @@
           <div class="col-md-3 social-pic">
             <img src="{{instagrams_profile.profile_picture}}" ng-show="instagrams_profile!={}">
           </div>
-          <div class="col-md-6" class="social-title">
+          <div class="col-md-4" class="social-title">
             <h3>Instagram</h3>
             <h5>{{instagrams_profile.full_name}}</h5>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-5">
             <ul class="navbar-right module-ctrl">
-              <li><span class="glyphicon glyphicon-play" ng-click="authenticate('instagram')"></span></li>
-              <li><span class="glyphicon glyphicon-stop"></span></li>
-            </ul>
-            <ul class="navbar-right module-ctrl">
-              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('instagrams')"></span></li>
-              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('instagrams')"></span></li>
+              <li>
+                <span class="glyphicon glyphicon-play" ng-click="authenticate('instagram')"></span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-stop"></span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-refresh" ng-click="extractData('instagrams')"></span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-remove" ng-click="removeFromArray('instagrams')"></span>
+              </li>
             </ul>
           </div>
         </div>
@@ -269,8 +273,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Select Your Modules</h4>
       </div>
       <div class="modal-body">
 
@@ -296,12 +299,13 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="dismiss-button" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
+
 
 <!-- MODAL FOR SETTINGS -->
 
@@ -362,14 +366,14 @@
                         rows="5"
                         ng-model="newTweet"></textarea>
             <!-- <span id="chars"> 140 characters remaining</span> -->
-              <button class="btn btn-primary">Post Your Tweet</button>
-            </form>
           </div>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="dismiss-button" data-dismiss="modal">Close</button>
+              <button class="send-tweet-button">Post Your Tweet</button>
+        </form>
       </div>
     </div>
   </div>
