@@ -51,8 +51,16 @@
   <button ng-click="testing()">Array Test</button>
 
     <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moduleModal">
+    Module Modal
+  </button>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#settingModal">
+    Setting Modal
+  </button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tweetingModal">
+    Post Tweet
   </button>
 
   </div>
@@ -77,10 +85,13 @@
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
-              <li><span class="glyphicon glyphicon-plus" ng-click="authenticate('instagram')"></span></li>
-              <li><span class="glyphicon glyphicon-refresh"></span></li>
-              <li><span class="glyphicon glyphicon-minus"></span></li>
-              <li><span class="glyphicon glyphicon-remove"></span></li>
+              <li><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#tweetingModal"></span></li>
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('tweets')"></span></li>
+            </ul>
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-play" ng-click="authenticate('twitter')"></span></li>
+              <li><span class="glyphicon glyphicon-stop"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('tweets')"></span></li>
             </ul>
           </div>
         </div>
@@ -129,10 +140,12 @@
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
-              <li><span class="glyphicon glyphicon-plus" ng-click="authenticate('instagram')"></span></li>
-              <li><span class="glyphicon glyphicon-refresh"></span></li>
-              <li><span class="glyphicon glyphicon-minus"></span></li>
-              <li><span class="glyphicon glyphicon-remove"></span></li>
+              <li><span class="glyphicon glyphicon-play" ng-click="authenticate('instagram')"></span></li>
+              <li><span class="glyphicon glyphicon-stop"></span></li>
+            </ul>
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('instagrams')"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('instagrams')"></span></li>
             </ul>
           </div>
         </div>
@@ -162,8 +175,8 @@
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
-              <li><span class="glyphicon glyphicon-refresh"></span></li>
-              <li><span class="glyphicon glyphicon-remove"></span></li>
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('bbcsports')"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('bbcsports')"></span></li>
             </ul>
           </div>
         </div>
@@ -193,8 +206,8 @@
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
-              <li><span class="glyphicon glyphicon-refresh"></span></li>
-              <li><span class="glyphicon glyphicon-remove"></span></li>
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('dailymails')"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('dailymails')"></span></li>
             </ul>
           </div>
         </div>
@@ -224,22 +237,24 @@
           </div>
           <div class="col-md-3">
             <ul class="navbar-right module-ctrl">
-              <li><span class="glyphicon glyphicon-refresh"></span></li>
-              <li><span class="glyphicon glyphicon-remove"></span></li>
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('nytimes')"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('nytimes')"></span></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="module-data">
-        <div ng-repeat="article in nytimes" class="news-cont">
-          <div>
-            <div>
+        <div ng-repeat="article in nytimes" class="nytimes-cont">
+          <div class="row">
+            <div class="col-md-2">
+              <img src="{{article.multimedia[1].url}}" class="nytimes-img">
+            </div>
+            <div class="col-md-10">
               <a href="{{article.url}}" target="_blank">
-                <img src="{{article.multimedia[3].url}}" class="news-img">
+                <h5 class="news-title">{{article.title}}</h5>
+                <p class="news-desc">{{article.abstract}}</p>
               </a>
             </div>
-              <h5 class="news-title">{{article.title}}</h5>
-              <p  class="news-desc">{{article.abstract}}</p>
           </div>
         </div>
       </div>
@@ -248,8 +263,9 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- MODAL FOR MODULES -->
+
+<div class="modal fade" id="moduleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -257,11 +273,103 @@
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
       <div class="modal-body">
-        ...
+
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">Social Apps</h4>
+            <div>
+              <div id="tweets-icon" ng-click="addToArray('tweets')"></div>
+              <div id="instagrams-icon" ng-click="addToArray('instagrams')""></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">News</h4>
+            <div>
+              <div id="nytimes-icon" ng-click="addToArray('nytimes')"></div>
+              <div id="dailymails-icon"  ng-click="addToArray('dailymails')"></div>
+              <div id="bbcsports-icon" ng-click="addToArray('bbcsports')"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FOR SETTINGS -->
+
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">Social Apps</h4>
+            <div>
+              <div id="tweets-icon" ng-click="addToArray('tweets')"></div>
+              <div id="instagrams-icon" ng-click="addToArray('instagrams')""></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">News</h4>
+            <div>
+              <div id="nytimes-icon" ng-click="addToArray('nytimes')"></div>
+              <div id="dailymails-icon"  ng-click="addToArray('dailymails')"></div>
+              <div id="bbcsports-icon" ng-click="addToArray('bbcsports')"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FOR POST TWEET -->
+
+<div class="modal fade" id="tweetingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Send Your Tweet</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 tweet-msg">
+            <form action="" ng-submit="postTweet()">
+              <textarea name="message.tweet"
+                        placeholder="Type in your tweet here"
+                        rows="5"
+                        ng-model="newTweet"></textarea>
+            <!-- <span id="chars"> 140 characters remaining</span> -->
+              <button class="btn btn-primary">Post Your Tweet</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

@@ -31,7 +31,86 @@ legend {
     padding-right: 12px;
 }
 
+// FIND MODULES
+
+#tweets-icon {
+  background-image: url(../../images/twitter.png);
+  height: 75px;
+  width: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  float: left;
+  margin-bottom: 15px;
+  margin-right: 12px;
+}
+#tweets-icon:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+/*INSTAGRAM*/
+
+#instagrams-icon {
+  background-image: url(../../images/instagram.png);
+  height: 75px;
+  width: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  float: left;
+  margin-bottom: 15px;
+  margin-right: 12px;
+}
+#instagrams-icon:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+
+/*NEWS*/
+
+/*NY TIMES*/
+
+#nytimes-icon {
+  background-image: url(../../images/ny-times.png);
+  height: 75px;
+  width: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  float: left;
+  margin-bottom: 15px;
+  margin-right: 12px;
+}
+#nytimes-icon:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+/*BBC NEWS*/
+
+#bbcsports-icon {
+  background-image: url(../../images/bbc-news.png);
+  height: 75px;
+  width: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  float: left;
+  margin-bottom: 15px;
+  margin-right: 12px;
+}
+#bbcsports-icon:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
 // MODULES
+
+.module {
+    margin: 20px 0px;
+}
 
 .module-holder{
     display: inline-block;
@@ -168,6 +247,9 @@ legend {
     height: 50px;
     overflow: hidden;
 }
+.tweet-msg form textarea{
+    width: 100%;
+}
 
 // INSTAGRAM MODULE
 
@@ -195,13 +277,6 @@ legend {
 
 // NEWS MODULE
 
-#nytimes-title {
-    height: 80px;
-}
-#nytimes-title img {
-    height: 100%;
-    width: 100%;
-}
 #dailymails-title {
     height: 80px;
 }
@@ -238,3 +313,47 @@ legend {
     padding: 10px 0px;
 }
 
+
+// NY TIMES MODULE
+
+#nytimes-title {
+    height: 80px;
+}
+#nytimes-title img {
+    height: 100%;
+    width: 100%;
+}
+
+// NEWS BODY
+.nytimes-img {
+    width: 100%;
+    border-radius: 5px 0px 0px 5px;
+}
+.nytimes-cont .row {
+    margin-bottom: 5px;
+    border: 1px solid #eeefef;
+    margin-right: 0px;
+    border-radius: 5px;
+    margin-left: 0px;
+}
+.nytimes-cont .row .col-md-2 {
+    padding: 0px;
+    border-right: 1px solid #eeefef;
+}
+.nytimes-cont .row .col-md-10 {
+    padding: 0px 0px;
+}
+.nytimes-cont .row .col-md-10 a{
+    color: black;
+}
+.nytimes-cont .row .col-md-10 a h5{
+    padding: 5px 0px;
+    height: 40px;
+}
+.nytimes-cont .row .col-md-10 a p{
+    text-overflow: ellipsis;
+    padding: 5px 0px;
+    height: 25px;
+    width: 338.750px;
+    overflow: hidden;
+}

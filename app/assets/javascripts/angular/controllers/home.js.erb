@@ -2,21 +2,27 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
 
   $scope.message = "Welcome to the Home Landing Page";
   $scope.preference = ["instagrams", "bbcsports", "dailymails"];
+
+
   $scope.tweets = [];
+  $scope.newTweet = {};
+  $scope.tweets_profile = {};
+
   $scope.instagrams = [];
+  $scope.instagrams_profile = {};
+
   $scope.facebooks = [];
   $scope.bbcsports = [];
   $scope.dailymails = [];
   $scope.nytimes = [];
   $scope.weathers = [];
 
-  $scope.tweets_profile = {};
-  $scope.instagrams_profile = {};
   // $scope.user = $auth.user;
 
   $scope.addToArray = function (elem) {
     $scope.preference.push(elem);
-    $scope.getData();
+    $scope.extractData(elem);
+    $scope.savePreferences();
   };
 
   // CURRENTLY IF ELEM IS NOT THERE IT WILL RETURN -1 WHICH WILL REMOVE THE MOST RECENT ONE
@@ -42,7 +48,6 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
         preferences: $scope.preference
       }
     }).then(function(resp){
-      console.log(resp);
     });
   };
 
@@ -55,8 +60,16 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
     });
   };
 
+  $scope.getData = function() {
+    for (var i = 0; i < $scope.preference.length; i++) {
+      var module = $scope.preference[i];
+      $scope.extractData(module);
+      getProfile(module);
+    };
+  };
+
   // FUNCTION ADDED BECAUSE OF THE ASYNCHRONOUS NATURE OF JS, THIS ENSURES THAT THE MODULE VARIABLE IN GETNEWS FUNCTION IS THE CORRECT ONE AS IT PASSES IT AS AN INSTANCE TO EXTRACTDATA FUNCTION
-  var extractData = function(module) {
+  $scope.extractData = function(module) {
     ModuleService.resource(module).query(function(resp) {
       $scope[module] = resp;
       if (module === "tweets") {
@@ -65,14 +78,14 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
         };
       };
     });
+    getProfile(module);
   };
 
-  $scope.getData = function() {
-    for (var i = 0; i < $scope.preference.length; i++) {
-      var module = $scope.preference[i];
-      extractData(module);
-      getProfile(module);
-    };
+  $scope.postTweet = function() {
+    ModuleServuce.resource("tweets").save($scope.newTweet, function(resp){
+      console.log(resp);
+      $scope.newTweet = {};
+    });
   };
 
   // TO BE PASTED BACK INTO THE CODE ABOVE IF ENOUGHT TIME FOR WEATHERS
@@ -111,7 +124,7 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
   }
 
   $scope.testingPro = function() {
-    console.log($scope.tweets_profile);
+    console.log($scope.preference);
   }
 
   $scope.logout = function () {
