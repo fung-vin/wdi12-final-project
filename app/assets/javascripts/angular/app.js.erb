@@ -23,11 +23,11 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", "URL_CONSTA
     url: "/home",
     templateUrl: "<%= asset_path('main/home.html') %>",
     controller: 'HomeCtrl',
-    resolve: {
-      auth: function($auth) {
-        return $auth.validateUser();
-      }
-    }
+    // resolve: {
+    //   auth: function($auth) {
+    //     return $auth.validateUser();
+    //   }
+    // }
   });
 
   $authProvider.configure({
