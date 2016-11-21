@@ -15,7 +15,7 @@ app.service('ModuleService', ['$resource', '$http', 'URL_CONSTANT', function($re
     for (var i = 0; i < arr.length; i++) {
       if(/^(f|ht)tps?:\/\//i.test(arr[i]) || /^(f|ht)tp?:\/\//i.test(arr[i])) {
         link = encodeURIComponent(arr[i]);
-        req =  "http://api.embed.ly/1/extract?url="+ link + "&maxwidth=500&key=d93a3d891bf4470a8fba0abf039041cf"
+        req =  "https://api.embed.ly/1/extract?url="+ link + "&maxwidth=500&key=d93a3d891bf4470a8fba0abf039041cf"
         $http({
             method: "GET",
             url: req
