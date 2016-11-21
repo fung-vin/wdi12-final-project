@@ -8,8 +8,7 @@ app.controller('HeaderCtrl', ['$scope', "$auth", "$state", "UserService", functi
       console.log(resp);
       // redirect to home when registration succesfull
       $state.path('header.home');
-      }).
-    catch(function(resp) {
+    }).catch(function(resp) {
       // handle error response
       console.log(resp);
     });
