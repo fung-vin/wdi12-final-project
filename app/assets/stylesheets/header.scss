@@ -54,7 +54,7 @@ legend {
 // FIND MODULES
 
 #tweets-icon {
-  background-image: url(../../images/twitter.png);
+  background-image: url(http://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Twitter-icon.png);
   height: 75px;
   width: 75px;
   background-repeat: no-repeat;
@@ -72,7 +72,7 @@ legend {
 /*INSTAGRAM*/
 
 #instagrams-icon {
-  background-image: url(../../images/instagram.png);
+  background-image: url(http://3835642c2693476aa717-d4b78efce91b9730bcca725cf9bb0b37.r51.cf1.rackcdn.com/Instagram_App_Large_May2016_200.png);
   height: 75px;
   width: 75px;
   background-repeat: no-repeat;
@@ -93,7 +93,7 @@ legend {
 /*NY TIMES*/
 
 #nytimes-icon {
-  background-image: url(../../images/ny-times.png);
+  background-image: url(http://is1.mzstatic.com/image/thumb/Purple6/v4/bd/3d/17/bd3d172b-7d63-1f25-8a23-64706f979900/mzl.mbwcwrlv.png/0x0ss-85.jpg);
   height: 75px;
   width: 75px;
   background-repeat: no-repeat;
@@ -102,6 +102,7 @@ legend {
   float: left;
   margin-bottom: 15px;
   margin-right: 12px;
+  border-radius: 10px;
 }
 #nytimes-icon:hover {
   opacity: 0.5;
@@ -111,7 +112,7 @@ legend {
 /*DAILY MAILS*/
 
 #dailymails-icon {
-  background-image: url(../../images/bbc-news.png);
+  background-image: url(https://lh3.googleusercontent.com/Ix5XIalMd0-Jbt4Y-osQ3vHJnn1VmmcBRS5eOj3Kai9Eqk-QuTMpQa7dxv_EYm5bvsE=w300);
   height: 75px;
   width: 75px;
   background-repeat: no-repeat;
@@ -120,6 +121,7 @@ legend {
   float: left;
   margin-bottom: 15px;
   margin-right: 12px;
+  border-radius: 10px;
 }
 #dailymails-icon:hover {
   opacity: 0.5;
@@ -129,7 +131,7 @@ legend {
 /*BBC SPORTS*/
 
 #bbcsports-icon {
-  background-image: url(../../images/bbc-news.png);
+  background-image: url(http://rioferdinand.com/wp-content/uploads/2014/06/mzl.yazmstuf.png);
   height: 75px;
   width: 75px;
   background-repeat: no-repeat;
@@ -138,6 +140,7 @@ legend {
   float: left;
   margin-bottom: 15px;
   margin-right: 12px;
+  border-radius: 10px;
 }
 #bbcsports-icon:hover {
   opacity: 0.5;
@@ -159,7 +162,7 @@ legend {
     height: 85px;
 }
 .module-holder{
-    width: 435px;
+    width: 435px; //435
     border-radius: 15px 15px 0px 0px;
 }
 .module-data {

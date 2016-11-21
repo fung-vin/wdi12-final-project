@@ -1,4 +1,20 @@
-app.controller('IndexCtrl', ['$scope', '$auth', function($scope, $auth){
-  $scope.message = "Hello World!";
+app.controller('IndexCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location){
+  $scope.message = "Hello World! STATIC";
+
+
+  $scope.signup = function () {
+    $auth.submitRegistration($scope.registrationForm).
+     then(function(resp) {
+       // handle success response
+       console.log(resp);
+
+       // redirect back to root when registration succesfull
+       $location.path('/home');
+     }).
+     catch(function(resp) {
+       // handle error response
+       console.log(resp);
+     });
+  };
 
 }]);
