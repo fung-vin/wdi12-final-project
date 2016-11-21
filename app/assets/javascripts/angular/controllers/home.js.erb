@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleService', function($scope, $auth, $location, $http, ModuleService){
+app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleService', 'URL_CONSTANT', function($scope, $auth, $location, $http, ModuleService, URL_CONSTANT){
 
   $scope.preference = [];
 
@@ -30,7 +30,7 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
 
   var getProfile = function(key) {
     $http({
-      url: 'http://localhost:3000/api/' + key + '_self',
+      url: URL_CONSTANT.domain + '/api/' + key + '_self',
       method: 'GET'
     }).then(function(resp){
       $scope[key + '_profile'] = resp.data;
@@ -39,7 +39,7 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
 
   $scope.savePreferences = function () {
     $http({
-      url: 'http://localhost:3000/api/save_preferences',
+      url: URL_CONSTANT.domain + '/api/save_preferences',
       method: 'POST',
       data: {
         preferences: $scope.preference
@@ -50,7 +50,7 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
 
   $scope.getPreferences = function () {
     $http({
-      url: 'http://localhost:3000/api/get_preferences',
+      url: URL_CONSTANT.domain + '/api/get_preferences',
       method: 'GET'
     }).then(function(resp){
       $scope.preference = resp.data;

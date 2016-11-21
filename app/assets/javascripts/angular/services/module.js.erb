@@ -1,7 +1,7 @@
-app.service('ModuleService', ['$resource', '$http', function($resource, $http) {
+app.service('ModuleService', ['$resource', '$http', 'URL_CONSTANT', function($resource, $http, URL_CONSTANT) {
 
   this.resource = function(key){
-    return $resource("http://localhost:3000/api/" + key + "/:id", {}, {
+    return $resource(URL_CONSTANT.domain + "/api/" + key + "/:id", {}, {
       "update": {method: "PATCH"}
     });
   };
