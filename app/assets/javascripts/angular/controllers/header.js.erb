@@ -7,7 +7,7 @@ app.controller('HeaderCtrl', ['$scope', "$auth", "$state", "UserService", functi
       // handle success response
       console.log(resp);
       // redirect to home when registration succesfull
-      $state.path('header.home');
+      $state.go('header.home');
     }).catch(function(resp) {
       // handle error response
       console.log(resp);
@@ -19,7 +19,7 @@ app.controller('HeaderCtrl', ['$scope', "$auth", "$state", "UserService", functi
       // handle success response
       console.log(resp);
       // hide log in menu and show profile menu
-      $state.path('header.index');
+      $state.go('header.index');
     }).catch(function(resp) {
       // handle error response
       console.log(resp);
