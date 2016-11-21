@@ -1,8 +1,6 @@
 app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleService', function($scope, $auth, $location, $http, ModuleService){
 
-  $scope.message = "Welcome to the Home Landing Page";
   $scope.preference = [];
-
 
   $scope.tweets = [];
   $scope.newTweet = {};
@@ -11,13 +9,12 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
   $scope.instagrams = [];
   $scope.instagrams_profile = {};
 
-  $scope.facebooks = [];
   $scope.bbcsports = [];
   $scope.dailymails = [];
   $scope.nytimes = [];
   $scope.weathers = [];
 
-  // $scope.user = $auth.user;
+  $scope.user = $auth.user;
 
   $scope.addToArray = function (elem) {
     $scope.preference.push(elem);
@@ -56,7 +53,8 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
       url: 'http://localhost:3000/api/get_preferences',
       method: 'GET'
     }).then(function(resp){
-      $scope.preference = resp;
+      $scope.preference = resp.data;
+      $scope.getData();
     });
   };
 
@@ -65,6 +63,7 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
       var module = $scope.preference[i];
       $scope.extractData(module);
       getProfile(module);
+      console.log("Get Data Ran");
     };
   };
 
@@ -82,7 +81,7 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
   };
 
   $scope.postTweet = function() {
-    ModuleServuce.resource("tweets").save($scope.newTweet, function(resp){
+    ModuleService.resource("tweets").save($scope.newTweet, function(resp){
       console.log(resp);
       $scope.newTweet = {};
     });
@@ -119,26 +118,10 @@ app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', 'ModuleServ
   //   };
   // };
 
-  $scope.deleteCookie = function (name) {
-
-  }
-
-  $scope.testingPro = function() {
-    console.log($scope.preference);
-  }
-
-  $scope.logout = function () {
-    $auth.signOut().then(function(resp) {
-      // handle success response
-      console.log(resp);
-      // hide log in menu and show profile menu
-      $scope.isLoggedIn = false;
-      // redirect back to root when logout is succesfull
-      $location.path('/');
-    }).catch(function(resp) {
-      // handle error response
-      console.log(resp);
-    });
+  var init = function() {
+    $scope.getPreferences();
+    console.log("Running init!");
   };
 
+  init();
 }]);

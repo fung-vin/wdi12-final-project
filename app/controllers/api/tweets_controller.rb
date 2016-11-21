@@ -8,7 +8,7 @@ class API::TweetsController < ApplicationController
   end
 
   def create
-    render json: {uri: @client.update(msg_params[:tweet]).uri.to_s}
+    render json: {uri: @client.update(msg_params[:message]).uri.to_s}
   end
 
   def get_self
@@ -32,6 +32,6 @@ private
   end
 
   def msg_params
-    params.require(:message).permit(:tweet)
+    params.require(:tweet).permit(:message)
   end
 end

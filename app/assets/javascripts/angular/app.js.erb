@@ -12,29 +12,22 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
     controller: 'HeaderCtrl'
   })
   .state({
-    name: 'index',
+    name: 'header.index',
     url: '/',
     templateUrl: "<%= asset_path('main/index.html') %>",
     controller: 'IndexCtrl'
   })
 
   .state({
-    name: "header.signup",
-    url: "/signup",
-    templateUrl: "<%= asset_path('auth/signup.html') %>",
-    controller: 'SignUpCtrl'
-  })
-
-  .state({
     name: "header.home",
     url: "/home",
     templateUrl: "<%= asset_path('main/home.html') %>",
-    controller: 'HomeCtrl'
-    // lve: {
-    //       auth: function($auth) {
-    //         return $auth.validateUser();
-    //       }
-    //     }
+    controller: 'HomeCtrl',
+    resolve: {
+      auth: function($auth) {
+        return $auth.validateUser();
+      }
+    }
   });
 
   $authProvider.configure({
@@ -43,9 +36,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$authProvider", function($s
     apiUrl: 'http://localhost:3000',
     authProviderPaths: {
       twitter: '/auth/twitter',
-      facebook: '/auth/facebook',
       instagram: '/auth/instagram',
-      pinterest: '/auth/pinterest'
     }
   });
 }]);

@@ -11,6 +11,11 @@ body{
     background: rgba(0, 0, 0, 0.3);
     color: #FFF !important;
     padding: 20px 25px 10px 25px;
+    -webkit-appearance: none;
+    border: 0px;
+    box-shadow:none;
+    border-radius: 0px;
+
 }
 .form-control {
     background-color: rgba(0, 0, 0, 0);
@@ -29,6 +34,21 @@ legend {
 
 .glyphicon {
     padding-right: 12px;
+}
+.glyphicon-pencil:hover {
+    opacity: 0.5;
+}
+.glyphicon-refresh:hover {
+    opacity: 0.5;
+}
+.glyphicon-play:hover {
+    opacity: 0.5;
+}
+.glyphicon-stop:hover {
+    opacity: 0.5;
+}
+.glyphicon-remove:hover {
+    opacity: 0.5;
 }
 
 // FIND MODULES
@@ -229,12 +249,16 @@ legend {
 .tweet-cont {
     border-bottom: 1px solid #eeefef;
 }
+.tweet-title {
+    padding-left: 5px;
+}
 .tweet-title li {
     display: inline;
     float: left;
 }
-.tweet-title {
-    padding-left: 5px;
+.tweet-title a {
+    color: black;
+    text-decoration: none;
 }
 .tweet-cont .row .col-md-2 {
     padding-left: 10px;
@@ -253,6 +277,10 @@ legend {
 }
 .tweet-content p {
     display: inline-block;
+}
+.tweet-content a {
+    color: black;
+    text-decoration: none;
 }
 
 // MODULE TWITTER - OG BLOCK
@@ -285,7 +313,9 @@ legend {
 .tweet-msg form textarea{
     width: 100%;
 }
-
+#tweet-texting {
+    color: black;
+}
 // INSTAGRAM MODULE
 
 .insta-cont {
@@ -339,7 +369,7 @@ legend {
 }
 .news-img {
     width: 100%;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
 }
 .news-img:hover {
     opacity: 0.7;

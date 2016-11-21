@@ -1,71 +1,4 @@
 <div class="container-fluid">
-  <div class="row">
-    <h1> {{ message }} </h1>
-  </div>
-
-  <div class="row">
-    <button ng-click="authenticate('twitter')">
-      Sign into Twitter
-    </button>
-
-    <a href="http://localhost:3000/api/tweets">Get Tweets</a>
-
-    <button ng-click="getData()">test</button>
-    <button ng-click="addToArray('tweets')">Add Twitter</button>
-    <button ng-click="addToArray('instagrams')">Add Instagrams</button>
-    <button ng-click="addToArray('nytimes')">Add NY Times</button>
-    <button ng-click="removeFromArray('nytimes')">Remove NY Times</button>
-    <button ng-click="logout()">logout</button>
-    <button ng-click="savePreferences()">Save Preferences</button>
-    <button ng-click="getPreferences()">Get Preferences</button>
-    <button ng-click="testingPro()">Get PRofile</button>
-  </div>
-
-  <div class="row">
-    <button ng-click="authenticate('facebook')">
-      Sign into Facebook
-    </button>
-
-  </div>
-
-  <div class="row">
-    <button ng-click="authenticate('instagram')">
-      Sign into Instagram
-    </button>
-
-  </div>
-
-  <div class="row">
-    <button ng-click="authenticate('google')">
-      Sign into Google
-    </button>
-
-  </div>
-
-  <div class="row">
-    <button ng-click="authenticate('pinterest')">
-      Sign into Pinterest
-    </button>
-
-  <button ng-click="getNews()">BBC Sports</button>
-  <button ng-click="testing()">Array Test</button>
-
-    <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#moduleModal">
-    Module Modal
-  </button>
-
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#settingModal">
-    Setting Modal
-  </button>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tweetingModal">
-    Post Tweet
-  </button>
-
-  </div>
-
-
 
   <!-- HOLDER FOR ALL MODULES -->
 
@@ -189,11 +122,11 @@
         <div ng-repeat="article in bbcsports" class="news-cont">
           <div>
             <div>
+              <h4 class="news-title">{{article.title}}</h4>
               <a href="{{article.url}}" target="_blank">
                 <img src="{{article.urlToImage}}" class="news-img">
               </a>
             </div>
-            <h5 class="news-title">{{article.title}}</h5>
             <p class="news-desc">{{article.description}}</p>
           </div>
         </div>
@@ -220,12 +153,12 @@
         <div ng-repeat="article in dailymails" class="news-cont">
           <div>
             <div>
+              <h4 class="news-title">{{article.title}}</h4>
               <a href="{{article.url}}" target="_blank">
                 <img src="{{article.urlToImage}}" class="news-img">
               </a>
             </div>
-            <h5 class="news-title">{{article.title}}</h5>
-            <p  class="news-desc">{{article.description}}</p>
+            <p class="news-desc">{{article.description}}</p>
           </div>
         </div>
       </div>
@@ -361,19 +294,19 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2 tweet-msg">
             <form action="" ng-submit="postTweet()">
-              <textarea name="message.tweet"
+              <textarea id="tweet-texting"
                         placeholder="Type in your tweet here"
                         rows="5"
-                        ng-model="newTweet"></textarea>
+                        ng-model="newTweet.message"></textarea>
             <!-- <span id="chars"> 140 characters remaining</span> -->
+            </form>
           </div>
         </div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="dismiss-button" data-dismiss="modal">Close</button>
-              <button class="send-tweet-button">Post Your Tweet</button>
-        </form>
+        <button class="send-tweet-button" ng-click="postTweet()">Post Your Tweet</button>
       </div>
     </div>
   </div>
