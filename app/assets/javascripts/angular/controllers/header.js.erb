@@ -1,4 +1,4 @@
-app.controller('HeaderCtrl', ['$scope', "$auth", "$location", "UserService", function($scope, $auth, $location, UserService){
+app.controller('HeaderCtrl', ['$scope', "$auth", "$state", "UserService", function($scope, $auth, $state, UserService){
 
   $scope.user = UserService.user;
 
@@ -7,7 +7,7 @@ app.controller('HeaderCtrl', ['$scope', "$auth", "$location", "UserService", fun
       // handle success response
       console.log(resp);
       // redirect to home when registration succesfull
-      $location.path('/home');
+      $state.path('header.home');
       }).
     catch(function(resp) {
       // handle error response
@@ -20,7 +20,7 @@ app.controller('HeaderCtrl', ['$scope', "$auth", "$location", "UserService", fun
       // handle success response
       console.log(resp);
       // hide log in menu and show profile menu
-      $location.path('/');
+      $state.path('header.index');
     }).catch(function(resp) {
       // handle error response
       console.log(resp);

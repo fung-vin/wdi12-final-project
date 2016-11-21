@@ -1,4 +1,4 @@
-app.controller('IndexCtrl', ['$scope', '$auth', '$location', function($scope, $auth, $location){
+app.controller('IndexCtrl', ['$scope', '$auth', '$state', function($scope, $auth, $state){
   $scope.message = "Hello World! STATIC";
 
 
@@ -9,7 +9,7 @@ app.controller('IndexCtrl', ['$scope', '$auth', '$location', function($scope, $a
        console.log(resp);
 
        // redirect back to root when registration succesfull
-       $location.path('/home');
+       $state.go('header.home');
      }).
      catch(function(resp) {
        // handle error response
