@@ -1,19 +1,14 @@
-app.controller('HeaderCtrl', ['$scope', "$auth", "$location", function($scope, $auth, $location){
+app.controller('HeaderCtrl', ['$scope', "$auth", "$state", "UserService", function($scope, $auth, $state, UserService){
 
-  $scope.message = "Welcome to Your Header";
-
-  $scope.isLoggedIn = false;
+  $scope.user = UserService.user;
 
   $scope.login = function () {
     $auth.submitLogin($scope.loginForm).then(function(resp) {
       // handle success response
       console.log(resp);
-      // hide log in menu and show profile menu
-      $scope.isLoggedIn = true;
       // redirect to home when registration succesfull
-      $location.path('/home');
-      }).
-    catch(function(resp) {
+      $state.go('header.home');
+    }).catch(function(resp) {
       // handle error response
       console.log(resp);
     });
@@ -24,13 +19,12 @@ app.controller('HeaderCtrl', ['$scope', "$auth", "$location", function($scope, $
       // handle success response
       console.log(resp);
       // hide log in menu and show profile menu
-      $scope.isLoggedIn = false;
-      // redirect back to root when logout is succesfull
-      $location.path('/');
+      $state.go('header.index');
     }).catch(function(resp) {
       // handle error response
       console.log(resp);
     });
   };
+
 
 }]);

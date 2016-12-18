@@ -14,3 +14,14 @@
  *= require_tree .
  *= require_self
  */
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+
+  src: font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.eot');
+  src: font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+       font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.woff') format('woff'),
+       font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+       font-url('bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}

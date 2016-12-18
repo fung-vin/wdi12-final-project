@@ -13,11 +13,13 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
 //= require angular/angular
+//= require angular-resource/angular-resource
 //= require angular-route/angular-route
 //= require angular-ui-router/release/angular-ui-router
 //= require ng-token-auth/dist/ng-token-auth
 //= require angular-cookie/angular-cookie
 //= require bootstrap/dist/js/bootstrap
 //= require angular-bootstrap/ui-bootstrap-tpls
+//= require ngInfiniteScroll/build/ng-infinite-scroll
 
 //= require_tree .

@@ -1,0 +1,34 @@
+app.service('ModuleService', ['$resource', '$http', 'URL_CONSTANT', function($resource, $http, URL_CONSTANT) {
+
+  this.resource = function(key){
+    return $resource(URL_CONSTANT.domain + "/api/" + key + "/:id", {}, {
+      "update": {method: "PATCH"}
+    });
+  };
+
+  this.addInfoTweets = function(tweet) {
+
+    var arr = tweet.text.split(" ");
+    var link = "";
+    var req = "";
+
+    for (var i = 0; i < arr.length; i++) {
+      if(/^(f|ht)tps?:\/\//i.test(arr[i]) || /^(f|ht)tp?:\/\//i.test(arr[i])) {
+        link = encodeURIComponent(arr[i]);
+        req =  "https://api.embed.ly/1/extract?url="+ link + "&maxwidth=500&key=d93a3d891bf4470a8fba0abf039041cf"
+        $http({
+            method: "GET",
+            url: req
+        }).then(function(ogResp){
+          tweet.og = {
+            title:       ogResp.data.title,
+            description: ogResp.data.description,
+            img:         ogResp.data.images[0].url,
+            url:         ogResp.data.url
+          };
+        });
+      };
+    };
+  };
+
+}]);

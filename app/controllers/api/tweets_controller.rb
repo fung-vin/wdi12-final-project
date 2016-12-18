@@ -1,33 +1,37 @@
 class API::TweetsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :define_user, only: [:index, :create]
+  before_action :get_user, only: [:index, :get_self, :create]
   before_action :msg_params, only: [:create]
 
   def index
-    render json: @twitter.home_timeline
+    render json: @client.home_timeline
   end
 
   def create
-    render json: {uri: @twitter.update(msg_params[:tweet]).uri.to_s}
+    render json: {uri: @client.update(msg_params[:message]).uri.to_s}
+  end
+
+  def get_self
+    render json: @client.user
   end
 
 private
-  def define_user
+  def get_user
     auth = JWT.decode cookies[:twitter], ENV['JWT_SECRET'], true, {algorithm: 'HS256'}
 
-    @twitter = Twitter::REST::Client.new do |config|
+    @client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV['TWITTER_KEY']
       config.consumer_secret = ENV['TWITTER_SECRET']
       config.access_token = auth[0]['token']
       config.access_token_secret = auth[0]['secret']
     end
 
-    if @twitter.nil?
+    if @client.nil?
       render json: "Client not found", status: 404
     end
   end
 
   def msg_params
-    params.require(:message).permit(:tweet)
+    params.require(:tweet).permit(:message)
   end
 end

@@ -31,7 +31,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'rack-cors', :require => 'rack/cors'
-
 gem 'bower'
 
 # DEVISE AND OMNIAUTH FILES
@@ -40,13 +39,23 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-instagram'
-gem "omniauth-google-oauth2"
+gem 'omniauth-pinterest'
 
 # SOCIAL MEDA GEMS
 gem 'twitter'
+gem 'koala'
+gem "instagram"
+gem 'pinterest-api'
 
 # SECURITY GEM - JWT
 gem 'jwt'
+
+# MISC
+gem 'http'
+gem 'open-weather'
+gem 'rest-client'
+
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,38 +1,313 @@
-<div class="container">
-  <div class="row">
-    <h1> {{ message }} </h1>
+<div class="container-fluid">
+
+  <!-- HOLDER FOR ALL MODULES -->
 
   <div class="row">
-    <button ng-click="authenticate('twitter')">
-      Sign into Twitter
-    </button>
 
-    <a href="http://localhost:3000/api/tweets">Get Tweets</a>
+    <!-- MODULE FOR TWITTER -->
 
-    <button ng-click="test()">test</button>
-    <button ng-click="test2()">test2</button>
-    <button ng-click="logout()">logout</button>
+    <div class="col-md-3 col-xs-12 module" id="twitter" ng-show="preference.indexOf('tweets') != -1">
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-3 col-xs-3 social-pic">
+            <img src="{{tweets_profile.profile_image_url}}">
+          </div>
+          <div class="col-md-5 col-xs-5" class="social-title">
+            <h3>Twitter</h3>
+            <h5>@{{tweets_profile.screen_name}} | {{tweets_profile.name}}</h5>
+          </div>
+          <div class="col-md-4  col-xs-4">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#tweetingModal"></span></li>
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('tweets')"></span></li>
+              <li><span class="glyphicon glyphicon-play" ng-click="authenticate('twitter')"></span></li>
+              <li><span class="glyphicon glyphicon-stop"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('tweets')"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class=" module-data"">
+        <div ng-repeat="tweet in tweets" class="tweet-cont">
+          <div class="row">
+            <div class="col-md-2 col-xs-2">
+              <img src="{{tweet.user.profile_image_url}}">
+            </div>
+            <div class="col-md-10 col-xs-10">
+              <ul class="tweet-title">
+                <li><h5><a href="https://twitter.com/{{tweet.user.screen_name}}">@{{tweet.user.screen_name}}</a>  </h5></li>
+                <li>&nbsp;</li>
+                <li><h5>{{tweet.user.name}}</h5></li>
+              </ul>
+              <div class="tweet-content">
+                <p><a href='https://twitter.com/{{tweet.user.name}}/status/{{tweet.id_str}}' target="_blank">{{tweet.text}}</a></p>
+              </div>
+              <div class="col-md-12 col-xs-12 ogt-clicks">
+                <a href="{{tweet.og.url}}" target="_blank">
+                  <div>
+                    <img src="{{tweet.og.img}}" alt="" class="ogt-img">
+                  </div>
+                  <h5 class="ogt-title">{{tweet.og.title}}</h5>
+                  <p class="ogt-desc">{{tweet.og.description}}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE FOR INSTAGRAMS -->
+
+    <div class="col-md-3 col-xs-12 module" id="instagrams" ng-show="preference.indexOf('instagrams') != -1">
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-3 col-xs-3 social-pic">
+            <img src="{{instagrams_profile.profile_picture}}" ng-show="instagrams_profile!={}">
+          </div>
+          <div class="col-md-4 col-xs-4" class="social-title">
+            <h3>Instagram</h3>
+            <h5>{{instagrams_profile.full_name}}</h5>
+          </div>
+          <div class="col-md-5 col-xs-5">
+            <ul class="navbar-right module-ctrl">
+              <li>
+                <span class="glyphicon glyphicon-play" ng-click="authenticate('instagram')"></span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-stop"></span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-refresh" ng-click="extractData('instagrams')"></span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-remove" ng-click="removeFromArray('instagrams')"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class=" module-data"">
+        <div ng-repeat="pic in instagrams" class="insta-cont">
+          <div>
+            <div>
+              <a href="{{pic.link}}" target="_blank">
+                <img src="{{pic.images.standard_resolution.url}}" class="inst-img">
+              </a>
+            </div>
+            <p class="inst-title">{{pic.caption.text}}</p>
+            <h5 class="inst-cap">Location: {{pic.location.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE FOR BBCSPORTS -->
+
+    <div class="col-md-3 col-xs-12 module" id="bbcsports" ng-show="preference.indexOf('bbcsports') != -1">
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-9 col-xs-9" id="bbcsports-title">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/BBC_Sport.svg/800px-BBC_Sport.svg.png">
+          </div>
+          <div class="col-md-3 col-xs-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('bbcsports')"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('bbcsports')"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="module-data">
+        <div ng-repeat="article in bbcsports" class="news-cont">
+          <div>
+            <div>
+              <h4 class="news-title">{{article.title}}</h4>
+              <a href="{{article.url}}" target="_blank">
+                <img src="{{article.urlToImage}}" class="news-img">
+              </a>
+            </div>
+            <p class="news-desc">{{article.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE FOR DAILYMAIL -->
+
+    <div class="col-md-3 col-xs-12 module" id="dailymails" ng-show="preference.indexOf('dailymails') != -1">
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-9 col-xs-9" id="dailymails-title">
+            <img src="http://www.findersinternational.co.uk/wp-content/uploads/2015/12/daily-mail-logo.png">
+          </div>
+          <div class="col-md-3 col-xs-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('dailymails')"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('dailymails')"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="module-data"  infinite-scroll="addMoreItems()" infinite-scroll-distance="4">
+        <div ng-repeat="article in dailymails" class="news-cont">
+          <div>
+            <div>
+              <h4 class="news-title">{{article.title}}</h4>
+              <a href="{{article.url}}" target="_blank">
+                <img src="{{article.urlToImage}}" class="news-img">
+              </a>
+            </div>
+            <p class="news-desc">{{article.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE FOR NY TIMES -->
+
+    <div class="col-md-3 col-xs-12 module" id="nytimes" ng-show="preference.indexOf('nytimes') != -1">
+      <div class="module-holder">
+        <div class="row">
+          <div class="col-md-9 col-xs-9" id="nytimes-title">
+            <img src="http://blog.bleacherreport.com/wp-content/uploads/2011/10/New-York-Times-Logo.jpg">
+          </div>
+          <div class="col-md-3 col-xs-3">
+            <ul class="navbar-right module-ctrl">
+              <li><span class="glyphicon glyphicon-refresh" ng-click="extractData('nytimes')"></span></li>
+              <li><span class="glyphicon glyphicon-remove" ng-click="removeFromArray('nytimes')"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="module-data">
+        <div ng-repeat="article in nytimes" class="nytimes-cont">
+          <div class="row">
+            <div class="col-md-2">
+              <img src="{{article.multimedia[1].url}}" class="nytimes-img">
+            </div>
+            <div class="col-md-10">
+              <a href="{{article.url}}" target="_blank">
+                <h5 class="news-title">{{article.title}}</h5>
+                <p class="news-desc">{{article.abstract}}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>
 
-  <div class="row">
-    <button ng-click="authenticate('facebook')">
-      Sign into Facebook
-    </button>
+<!-- MODAL FOR MODULES -->
 
+<div class="modal fade" id="moduleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Select Your Modules</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">Social Apps</h4>
+            <div>
+              <div id="tweets-icon" ng-click="addToArray('tweets')"></div>
+              <div id="instagrams-icon" ng-click="addToArray('instagrams')""></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">News</h4>
+            <div>
+              <div id="nytimes-icon" ng-click="addToArray('nytimes')"></div>
+              <div id="dailymails-icon"  ng-click="addToArray('dailymails')"></div>
+              <div id="bbcsports-icon" ng-click="addToArray('bbcsports')"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="dismiss-button" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="row">
-    <button ng-click="authenticate('instagram')">
-      Sign into Instagram
-    </button>
 
+
+<!-- MODAL FOR SETTINGS -->
+
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">Social Apps</h4>
+            <div>
+              <div id="tweets-icon" ng-click="addToArray('tweets')"></div>
+              <div id="instagrams-icon" ng-click="addToArray('instagrams')""></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h4 class="icon-head">News</h4>
+            <div>
+              <div id="nytimes-icon" ng-click="addToArray('nytimes')"></div>
+              <div id="dailymails-icon"  ng-click="addToArray('dailymails')"></div>
+              <div id="bbcsports-icon" ng-click="addToArray('bbcsports')"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="row">
-    <button ng-click="authenticate('google')">
-      Sign into Google
-    </button>
+<!-- MODAL FOR POST TWEET -->
 
+<div class="modal fade" id="tweetingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Send Your Tweet</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 tweet-msg">
+            <form action="" ng-submit="postTweet()">
+              <textarea id="tweet-texting"
+                        placeholder="Type in your tweet here"
+                        rows="5"
+                        ng-model="newTweet.message"></textarea>
+            <!-- <span id="chars"> 140 characters remaining</span> -->
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="dismiss-button" data-dismiss="modal">Close</button>
+        <button class="send-tweet-button" ng-click="postTweet()">Post Your Tweet</button>
+      </div>
+    </div>
   </div>
-
 </div>

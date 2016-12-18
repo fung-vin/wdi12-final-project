@@ -1,37 +1,127 @@
-app.controller('HomeCtrl', ['$scope', "$auth", "$location", '$http', function($scope, $auth, $location, $http){
+app.controller('HomeCtrl', ['$scope', "$auth", '$http', 'ModuleService', 'URL_CONSTANT', function($scope, $auth, $http, ModuleService, URL_CONSTANT){
 
-  $scope.message = "Welcome to the Home Landing Page";
+  $scope.preference = [];
 
-  $scope.test = function () {
-    $http({
-      url: '/api/tweets',
-      method: 'GET'
-    }).then(function(resp){
-      console.log(resp);
-    })
+  $scope.tweets = [];
+  $scope.newTweet = {};
+  $scope.tweets_profile = {};
+
+  $scope.instagrams = [];
+  $scope.instagrams_profile = {};
+
+  $scope.bbcsports = [];
+  $scope.dailymails = [];
+  $scope.nytimes = [];
+  $scope.weathers = [];
+
+  $scope.user = $auth.user;
+
+  $scope.addToArray = function (elem) {
+    $scope.preference.push(elem);
+    $scope.extractData(elem);
+    $scope.savePreferences();
   };
 
-  $scope.test2 = function () {
-    $http({
-      url: '/api/tweets',
-      method: 'POST'
-    }).then(function(resp){
-      console.log(resp);
-    })
-  }
+  // CURRENTLY IF ELEM IS NOT THERE IT WILL RETURN -1 WHICH WILL REMOVE THE MOST RECENT ONE
+  $scope.removeFromArray = function (elem) {
+    var id = $scope.preference.indexOf(elem);
+    $scope.preference.splice(id, 1);
+  };
 
-  $scope.logout = function () {
-    $auth.signOut().then(function(resp) {
-      // handle success response
-      console.log(resp);
-      // hide log in menu and show profile menu
-      $scope.isLoggedIn = false;
-      // redirect back to root when logout is succesfull
-      $location.path('/');
-    }).catch(function(resp) {
-      // handle error response
-      console.log(resp);
+  var getProfile = function(key) {
+    $http({
+      url: URL_CONSTANT.domain + '/api/' + key + '_self',
+      method: 'GET'
+    }).then(function(resp){
+      $scope[key + '_profile'] = resp.data;
     });
   };
 
+  $scope.savePreferences = function () {
+    $http({
+      url: URL_CONSTANT.domain + '/api/save_preferences',
+      method: 'POST',
+      data: {
+        preferences: $scope.preference
+      }
+    }).then(function(resp){
+    });
+  };
+
+  $scope.getPreferences = function () {
+    $http({
+      url: URL_CONSTANT.domain + '/api/get_preferences',
+      method: 'GET'
+    }).then(function(resp){
+      $scope.preference = resp.data;
+      $scope.getData();
+    });
+  };
+
+  $scope.getData = function() {
+    for (var i = 0; i < $scope.preference.length; i++) {
+      var module = $scope.preference[i];
+      $scope.extractData(module);
+      getProfile(module);
+      console.log("Get Data Ran");
+    };
+  };
+
+  // FUNCTION ADDED BECAUSE OF THE ASYNCHRONOUS NATURE OF JS, THIS ENSURES THAT THE MODULE VARIABLE IN GETNEWS FUNCTION IS THE CORRECT ONE AS IT PASSES IT AS AN INSTANCE TO EXTRACTDATA FUNCTION
+  $scope.extractData = function(module) {
+    ModuleService.resource(module).query(function(resp) {
+      $scope[module] = resp;
+      if (module === "tweets") {
+        for (var i = 0; i < $scope.tweets.length; i++) {
+          ModuleService.addInfoTweets($scope.tweets[i]);
+        };
+      };
+    });
+    getProfile(module);
+  };
+
+  $scope.postTweet = function() {
+    ModuleService.resource("tweets").save($scope.newTweet, function(resp){
+      console.log(resp);
+      $scope.newTweet = {};
+    });
+  };
+
+  // TO BE PASTED BACK INTO THE CODE ABOVE IF ENOUGHT TIME FOR WEATHERS
+   // else if (module === "weathers") {
+   //      for (var i = 0; i < $scope.weathers.length; i++) {
+   //        var date = ;
+   //        var datePlus = ;
+   //        var newWeather = [];
+   //        if ($scope.weathers[i].dt_text == date || $scope.weathers[i].dt_text  == datePlus) {
+   //          newWeather.push($scope.weathers[i]);
+   //        };
+   //        $scope.weathers = newWeather;
+   //      };
+   //    };
+
+  //THIS FUNCTION GETS THE WEATHER AND FINDS WHICH ONE IN THE ARRAY IS THE CLOSET TO THE CURRENT TIME AND RETURNS ITS INDEX NUMBER
+  // Scope.getIndexWeather = function() {
+  //   var d       = new Date();
+  //   var timeNow = g.getTime();
+
+  //   var index      = null;
+  //   var difference = null;
+
+  //   for (var i = 0; i < $scope.weather.length; i++) {
+  //     var tmpDiff = Math.abs(weather[i].dt - timeNow);
+  //     if (difference === null || tmpDiff < difference) {
+  //       difference = tmpDiff;
+  //       index = i;
+  //     };
+  //     return index;
+  //   };
+  // };
+
+  var init = function() {
+    $scope.getPreferences();
+    console.log("Running init!");
+  };
+
+  init();
 }]);
